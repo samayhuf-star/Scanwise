@@ -53,6 +53,12 @@
           "imageWidth": 200
         }
       ]
-    ]
+    ],
+    "owner": "krosz",
+    "extra": {
+      "eas": {
+        "projectId": "5cf47efc-4f02-435e-8e8b-e0491277ff07"
+      }
+    }
   }
 }
