@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { clearHistory, setSettings, useHistory, useSettings } from '@/lib/store';
 import { colors } from '@/lib/theme';
+import { openCustomerCenter, presentPaywall, restorePurchases, useEntitlement } from '@/lib/revenuecat';
 
 function Row({ label, hint, value, onChange }: { label: string; hint?: string; value: boolean; onChange: (v: boolean) => void }) {
   return (
@@ -27,6 +28,15 @@ export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const settings = useSettings();
   const history = useHistory();
+  const { active: pro } = useEntitlement();
+  const restore = async () => {
+    try {
+      const ok = await restorePurchases();
+      Alert.alert(ok ? 'Restored' : 'Nothing to restore', ok ? 'Scanwise Pro is active again.' : 'No Scanwise Pro purchase was found for this account.');
+    } catch (e: any) {
+      Alert.alert('Restore failed', e?.message ?? 'Please try again.');
+    }
+  };
 
   return (
     <ScrollView
@@ -53,6 +63,16 @@ export default function SettingsScreen() {
           value={settings.saveHistory}
           onChange={(v) => setSettings({ saveHistory: v })}
         />
+      </Card>
+
+      <SectionTitle>Scanwise Pro</SectionTitle>
+      <Card style={{ gap: 10 }}>
+        {pro ? (
+          <Button label="Manage subscription" icon="sparkles-outline" onPress={openCustomerCenter} />
+        ) : (
+          <Button label="Unlock Scanwise Pro" icon="sparkles-outline" onPress={() => presentPaywall('settings')} />
+        )}
+        <Button label="Restore purchases" icon="refresh-outline" onPress={restore} />
       </Card>
 
       <SectionTitle>Data</SectionTitle>
