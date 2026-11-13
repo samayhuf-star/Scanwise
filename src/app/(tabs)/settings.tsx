@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
-import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 import { useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -109,11 +109,11 @@ export default function SettingsScreen() {
       </Card>
 
       <View style={s.links}>
-        <Pressable accessibilityRole="link" onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)}>
+        <Pressable accessibilityRole="link" onPress={() => Linking.openURL(TERMS_URL)}>
           <Text style={s.link}>Terms of Use</Text>
         </Pressable>
         <Text style={s.hint}>·</Text>
-        <Pressable accessibilityRole="link" onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)}>
+        <Pressable accessibilityRole="link" onPress={() => Linking.openURL(PRIVACY_URL)}>
           <Text style={s.link}>Privacy Policy</Text>
         </Pressable>
       </View>

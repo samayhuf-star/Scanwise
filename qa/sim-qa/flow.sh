@@ -2,7 +2,7 @@
 # Scanwise flow for .github/workflows/sim-qa.yml.
 # Env from the workflow: UDID, BUNDLE_ID, SCHEME, WORKSPACE, DERIVED_DATA, OUT.
 # Seeds a QR image into the photo library, pre-grants Photos and Camera, installs the app, then runs the
-# ScanwiseQATests XCUITest: launch (no paywall), scan from photo (QA deep link fallback), Safe-Link Shield,
+# ScanwiseQATests XCUITest: launch (no paywall), scan from photo (QA deep link fallback), open in Safari, Safe-Link Shield,
 # generator, Pro gate, paywall prices and 7-day trial, StoreKit test purchase, Restore. Screenshots land in $OUT.
 set -euo pipefail
 : "${UDID:?}" "${BUNDLE_ID:?}" "${SCHEME:?}" "${WORKSPACE:?}" "${DERIVED_DATA:?}" "${OUT:?}"

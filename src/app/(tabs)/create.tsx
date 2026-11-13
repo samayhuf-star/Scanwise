@@ -27,7 +27,7 @@ import { colors, radius } from '@/lib/theme';
 type FieldDef = { key: string; label: string; placeholder?: string; keyboard?: 'default' | 'url' | 'email-address' | 'phone-pad' | 'decimal-pad'; multiline?: boolean; secure?: boolean };
 
 const FIELDS: Record<QrType, FieldDef[]> = {
-  url: [{ key: 'url', label: 'Website address', placeholder: 'example.com', keyboard: 'url' }],
+  url: [{ key: 'url', label: 'Website address', placeholder: 'https://www.yourwebsite.com', keyboard: 'url' }],
   text: [{ key: 'text', label: 'Text', placeholder: 'Anything you want to encode', multiline: true }],
   wifi: [
     { key: 'ssid', label: 'Network name' },

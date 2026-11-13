@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown, ReduceMotion } from 'react-native-reanimated';
@@ -161,17 +161,17 @@ export default function PaywallScreen() {
           <Text style={s.link}>{busy === 'restore' ? 'Restoring' : 'Restore purchases'}</Text>
         </Pressable>
         <View style={s.links}>
-          <Text accessibilityRole="link" style={s.link} onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)}>
+          <Text accessibilityRole="link" style={s.link} onPress={() => Linking.openURL(TERMS_URL)}>
             Terms of Use
           </Text>
           <Text style={s.dot}>·</Text>
-          <Text accessibilityRole="link" style={s.link} onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)}>
+          <Text accessibilityRole="link" style={s.link} onPress={() => Linking.openURL(PRIVACY_URL)}>
             Privacy Policy
           </Text>
           {Platform.OS === 'ios' ? (
             <>
               <Text style={s.dot}>·</Text>
-              <Text accessibilityRole="link" style={s.link} onPress={() => WebBrowser.openBrowserAsync(APPLE_EULA_URL)}>
+              <Text accessibilityRole="link" style={s.link} onPress={() => Linking.openURL(APPLE_EULA_URL)}>
                 Apple EULA
               </Text>
             </>

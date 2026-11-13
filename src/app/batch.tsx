@@ -57,7 +57,7 @@ export default function BatchScreen() {
             multiline
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder={'example.com/menu\nexample.com/wifi'}
+            placeholder={'https://www.yourwebsite.com/menu\nhttps://www.yourwebsite.com/wifi'}
             placeholderTextColor={colors.muted}
             style={s.input}
           />

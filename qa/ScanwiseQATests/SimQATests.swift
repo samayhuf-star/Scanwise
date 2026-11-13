@@ -1,8 +1,9 @@
 import XCTest
 import StoreKitTest
 
-/// Scanwise iOS simulator flow: launch (free, no paywall), scan from photo, Safe-Link Shield, generator,
-/// Pro gate, paywall prices and 7-day trial, StoreKit test purchase, Restore.
+/// Scanwise iOS simulator flow: launch (free, no paywall), scan from photo, open the result in Safari,
+/// Safe-Link Shield (warning, then Safari), generator, Pro gate, paywall prices and 7-day trial,
+/// StoreKit test purchase, Restore.
 /// Screenshots and results.json go to $SIM_QA_OUT (pass TEST_RUNNER_SIM_QA_OUT to xcodebuild).
 final class SimQATests: XCTestCase {
     private var session: SKTestSession?
@@ -87,6 +88,9 @@ final class SimQATests: XCTestCase {
             scanDetail += "; deep-link fallback resultSafe=\(scanOK)"
         }
         shot("02-scan-result")
+        let openSafe = openScannedLinkInSafari(button: "Open link", shotName: "02b-safari")
+        scanOK = scanOK && openSafe.safari && openSafe.returned
+        scanDetail += "; safari=\(openSafe.safari) returned=\(openSafe.returned)"
         record(2, "Scan QR (photo or camera fallback)", scanOK, scanDetail)
         closeModal()
 
@@ -94,7 +98,20 @@ final class SimQATests: XCTestCase {
         openQa("scanwise://qa/scan?raw=http%3A%2F%2F192.168.4.20%2Flogin.php%3Fbank%3D1")
         let danger = containing("Do not open this link").waitForExistence(timeout: 12)
         shot("03-safe-link-shield")
-        record(3, "Safe-Link Shield flags a risky link", danger, "dangerVerdict=\(danger)")
+        var warnBeforeOpen = false
+        var openRisk = (safari: false, returned: false)
+        if danger {
+            tapEl(containing("Open anyway"))
+            let alert = app.alerts["Open a link flagged as dangerous?"]
+            warnBeforeOpen = alert.waitForExistence(timeout: 8)
+            if warnBeforeOpen {
+                let confirm = alert.buttons["Open anyway"]
+                if confirm.exists { confirm.tap(); Thread.sleep(forTimeInterval: 1) }
+                openRisk = openSafariThenReturn(shotName: "03b-safari")
+            }
+        }
+        let shieldOK = danger && warnBeforeOpen && openRisk.safari && openRisk.returned
+        record(3, "Safe-Link Shield flags a risky link", shieldOK, "dangerVerdict=\(danger) warnBeforeOpen=\(warnBeforeOpen) safari=\(openRisk.safari) returned=\(openRisk.returned)")
         closeModal()
 
         // 4. Generator (free QR)
@@ -208,6 +225,29 @@ final class SimQATests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    /// Tap the result-screen open button, wait until MobileSafari is in the foreground, then come back.
+    private func openScannedLinkInSafari(button: String, shotName: String) -> (safari: Bool, returned: Bool) {
+        let btn = containing(button)
+        guard btn.waitForExistence(timeout: 5) else {
+            NSLog("[scanwise-qa] open button missing: \(button)")
+            return (false, false)
+        }
+        tapEl(btn)
+        return openSafariThenReturn(shotName: shotName)
+    }
+
+    private func openSafariThenReturn(shotName: String) -> (safari: Bool, returned: Bool) {
+        let safari = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+        let opened = safari.wait(for: .runningForeground, timeout: 15)
+        NSLog("[scanwise-qa] safari foreground=\(opened) state=\(safari.state.rawValue)")
+        shot(shotName)
+        app.activate()
+        let returned = app.wait(for: .runningForeground, timeout: 15)
+        NSLog("[scanwise-qa] app returned=\(returned)")
+        Thread.sleep(forTimeInterval: 1.2)
+        return (opened, returned)
+    }
 
     private func openQa(_ url: String) {
         guard let u = URL(string: url) else { return }

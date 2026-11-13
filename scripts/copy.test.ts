@@ -33,4 +33,19 @@ describe('app copy', () => {
     const layout = readFileSync(join(root, 'src/app/_layout.tsx'), 'utf8');
     assert.doesNotMatch(layout, /paywall['"]\s*\)|initialRouteName=["']paywall/);
   });
+  it('opens http(s) links in Safari, not an in-app browser', () => {
+    for (const f of walk(join(root, 'src'))) {
+      const src = readFileSync(f, 'utf8');
+      assert.doesNotMatch(src, /expo-web-browser|openBrowserAsync|WebView|SFSafariViewController/, f);
+    }
+    const actions = readFileSync(join(root, 'src/lib/actions.ts'), 'utf8');
+    assert.match(actions, /Linking\.openURL/);
+    assert.match(actions, /Open a link flagged as dangerous\?/);
+  });
+  it('Create and Batch placeholders do not use example.com', () => {
+    const create = readFileSync(join(root, 'src/app/(tabs)/create.tsx'), 'utf8');
+    const batch = readFileSync(join(root, 'src/app/batch.tsx'), 'utf8');
+    assert.doesNotMatch(create, /example\.com/);
+    assert.doesNotMatch(batch, /example\.com/);
+  });
 });

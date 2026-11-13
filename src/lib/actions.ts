@@ -1,7 +1,6 @@
 import * as Clipboard from 'expo-clipboard';
 import * as Haptics from 'expo-haptics';
 import * as Linking from 'expo-linking';
-import * as WebBrowser from 'expo-web-browser';
 import { Alert, Share } from 'react-native';
 import { getSettings } from './store';
 import type { Action, Analysis } from './shield';
@@ -28,8 +27,7 @@ export async function runAction(a: Action, analysis?: Analysis): Promise<string 
     case 'search':
     case 'map': {
       const go = async () => {
-        if (/^https?:\/\//i.test(a.value)) await WebBrowser.openBrowserAsync(a.value);
-        else await Linking.openURL(a.value).catch(() => Alert.alert('Can not open', 'No app on this device can handle it.'));
+        await Linking.openURL(a.value).catch(() => Alert.alert('Can not open', 'No app on this device can handle it.'));
       };
       if (analysis?.verdict === 'danger') {
         Alert.alert(
