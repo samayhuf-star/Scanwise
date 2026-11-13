@@ -138,6 +138,8 @@ final class SimQATests: XCTestCase {
             let close = any("paywall-close").exists
             payOK = y && m && trial && cta && disclosure && restore && terms && close
             payDetail = "settingsFree=\(freePlan) yearly $19.99=\(y) monthly $2.99=\(m) trial=\(trial) cta=\(cta) disclosure=\(disclosure) restore=\(restore) terms+privacy=\(terms) X=\(close) unavailable=\(any("plans-unavailable").exists)"
+            // Prices and the CTA start below the fold on a standard iPhone. Scroll until yearly, monthly and the buy button are all visible, then shoot.
+            revealPaywallPlans()
         }
         shot("06-paywall")
         record(6, "Paywall prices, trial, X, Restore, links", payOK, payDetail)
@@ -148,9 +150,14 @@ final class SimQATests: XCTestCase {
         if payOK {
             tapEl(any("plan-monthly"))
             sleep(1)
+            revealPaywallPlans()
             let ctaM = hasText(["Try 7 days free, then $2.99/month"])
             shot("07a-monthly-selected")
-            tapEl(containing("Try 7 days free"))
+            let buy = any("paywall-cta")
+            if !scrollUntilHittable(buy) {
+                _ = scrollUntilHittable(containing("Try 7 days free, then $2.99/month"))
+            }
+            if buy.exists { tapEl(buy) } else { tapEl(containing("Try 7 days free")) }
             confirmStoreSheet()
             let welcome = app.alerts["Welcome to Scanwise Pro"].waitForExistence(timeout: 20)
             shot("07b-purchased")
@@ -190,6 +197,14 @@ final class SimQATests: XCTestCase {
             }
         }
         record(9, "Restore purchases (Settings)", restoreOK, restoreDetail)
+
+        let failed = results.compactMap { row -> String? in
+            guard (row["pass"] as? Bool) != true else { return nil }
+            return row["name"] as? String
+        }
+        if !failed.isEmpty {
+            XCTFail("Failed steps: \(failed.joined(separator: "; "))")
+        }
     }
 
     // MARK: - Helpers
@@ -241,12 +256,29 @@ final class SimQATests: XCTestCase {
 
     @discardableResult
     private func scrollTo(_ el: XCUIElement) -> Bool {
-        for _ in 0..<6 {
+        return scrollUntilHittable(el)
+    }
+
+    @discardableResult
+    private func scrollUntilHittable(_ el: XCUIElement, maxSwipes: Int = 8) -> Bool {
+        for _ in 0..<maxSwipes {
             if el.exists && el.isHittable { return true }
             app.swipeUp()
-            Thread.sleep(forTimeInterval: 0.6)
+            Thread.sleep(forTimeInterval: 0.5)
         }
         return el.exists && el.isHittable
+    }
+
+    /// Swipe the paywall just far enough that yearly, monthly and the subscribe button share one frame.
+    private func revealPaywallPlans() {
+        for _ in 0..<8 {
+            let yearly = containing("$19.99").exists && (any("plan-yearly").isHittable || containing("$19.99").isHittable)
+            let monthly = containing("$2.99").exists && (any("plan-monthly").isHittable || containing("$2.99").isHittable)
+            let cta = any("paywall-cta").isHittable || containing("Try 7 days free").isHittable
+            if yearly && monthly && cta { return }
+            app.swipeUp()
+            Thread.sleep(forTimeInterval: 0.5)
+        }
     }
 
     private func dismissAppAlert() {

@@ -17,6 +17,7 @@ export function Button({
   danger,
   disabled,
   style,
+  testID,
 }: {
   label: string;
   onPress: () => void;
@@ -25,11 +26,13 @@ export function Button({
   danger?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
+  testID?: string;
 }) {
   const bg = primary ? colors.accent : danger ? 'transparent' : colors.cardAlt;
   const fg = primary ? '#04251D' : danger ? colors.danger : colors.text;
   return (
     <Pressable
+      testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
       disabled={disabled}

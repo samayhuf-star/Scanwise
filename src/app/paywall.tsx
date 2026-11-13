@@ -144,6 +144,7 @@ export default function PaywallScreen() {
             {plan ? (
               <Button
                 primary
+                testID="paywall-cta"
                 label={busy === 'buy' ? 'Please wait' : ctaText({ price: plan.price, period: plan.period, trialDays: plan.trialDays })}
                 disabled={!!busy}
                 onPress={onBuy}

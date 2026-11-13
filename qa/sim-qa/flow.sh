@@ -48,5 +48,8 @@ if not steps:
     lines.append("| none | FAIL | results.json missing |")
 open(os.path.join(out, "summary.md"), "w").write("\n".join(lines) + "\n")
 print("\n".join(lines))
+failed = [s for s in steps if not s.get("pass")]
+if not steps or failed or rc != 0:
+    raise SystemExit(rc if rc else 1)
 PY
-exit $RC
+exit $?
