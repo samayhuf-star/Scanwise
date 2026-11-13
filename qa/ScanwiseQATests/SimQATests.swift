@@ -82,7 +82,7 @@ final class SimQATests: XCTestCase {
         }
         if !scanOK {
             dismissAppAlert()
-            openQa("scanwise://qa/scan?raw=https%3A%2F%2Fexample.com%2Fscanwise-qa")
+            openQa("scanwise://qa/scan?raw=https%3A%2F%2Fwww.wikipedia.org")
             scanOK = containing("No red flags found").waitForExistence(timeout: 12)
             scanDetail += "; deep-link fallback resultSafe=\(scanOK)"
         }
@@ -103,7 +103,7 @@ final class SimQATests: XCTestCase {
         let field = app.textFields.firstMatch
         if field.waitForExistence(timeout: 8) {
             field.tap()
-            field.typeText("example.com/menu")
+            field.typeText("www.wikipedia.org")
             sleep(1)
             if app.keyboards.count > 0, let done = hittable("Return") { done.tap() }
             genOK = !containing("Fill in the details").exists && (hittable("Share image")?.isEnabled ?? false)
