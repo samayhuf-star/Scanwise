@@ -1,11 +1,13 @@
 import * as Clipboard from 'expo-clipboard';
 import * as Sharing from 'expo-sharing';
 import { useMemo, useRef, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { captureRef } from 'react-native-view-shot';
 import { BarcodeView, QrView } from '@/components/CodeViews';
-import { Button, Card, Chip, SectionTitle } from '@/components/ui';
+import { Button, Card, Chip, ProBadge, SectionTitle } from '@/components/ui';
 import { tap } from '@/lib/actions';
 import {
   BAR_FORMATS,
@@ -17,7 +19,9 @@ import {
   type QrType,
 } from '@/lib/generate';
 import { analyze } from '@/lib/shield';
-import { addHistory } from '@/lib/store';
+import { requirePro } from '@/lib/entitlement';
+import { isProColor, isProQrType } from '@/lib/pro';
+import { addHistory, usePro } from '@/lib/store';
 import { colors, radius } from '@/lib/theme';
 
 type FieldDef = { key: string; label: string; placeholder?: string; keyboard?: 'default' | 'url' | 'email-address' | 'phone-pad' | 'decimal-pad'; multiline?: boolean; secure?: boolean };
@@ -65,10 +69,15 @@ export default function CreateScreen() {
   const [barText, setBarText] = useState('');
   const [fg, setFg] = useState(SWATCHES[0]);
   const shot = useRef<any>(null);
+  const isPro = usePro();
+  // A Pro choice made earlier falls back to the free default if Pro is no longer active.
+  const activeMode = mode === 'bar' && !isPro ? 'qr' : mode;
+  const activeType: QrType = isProQrType(type) && !isPro ? 'url' : type;
+  const activeFg = isProColor(fg) && !isPro ? SWATCHES[0] : fg;
 
-  const payload = useMemo(() => (mode === 'qr' ? buildPayload(type, fields) : barText.trim()), [mode, type, fields, barText]);
-  const barCheck = useMemo(() => (mode === 'bar' ? encodeBarcode(payload, format) : null), [mode, payload, format]);
-  const ready = mode === 'qr' ? !!payload : !!barCheck?.ok;
+  const payload = useMemo(() => (activeMode === 'qr' ? buildPayload(activeType, fields) : barText.trim()), [activeMode, activeType, fields, barText]);
+  const barCheck = useMemo(() => (activeMode === 'bar' ? encodeBarcode(payload, format) : null), [activeMode, payload, format]);
+  const ready = activeMode === 'qr' ? !!payload : !!barCheck?.ok;
 
   const set = (k: string, v: string) => setFields((f) => ({ ...f, [k]: v }));
 
@@ -76,7 +85,7 @@ export default function CreateScreen() {
     const a = analyze(payload);
     addHistory({
       raw: payload,
-      format: mode === 'qr' ? 'qr' : format.toLowerCase(),
+      format: activeMode === 'qr' ? 'qr' : format.toLowerCase(),
       source: 'create',
       kind: a.kind,
       verdict: a.verdict,
@@ -105,25 +114,28 @@ export default function CreateScreen() {
         <Text style={s.title}>Create</Text>
 
         <View style={{ flexDirection: 'row', gap: 8, marginBottom: 14 }}>
-          <Chip label="QR code" active={mode === 'qr'} onPress={() => setMode('qr')} icon="qr-code" />
-          <Chip label="Barcode" active={mode === 'bar'} onPress={() => setMode('bar')} icon="barcode" />
+          <Chip label="QR code" testID="mode-qr" active={activeMode === 'qr'} onPress={() => setMode('qr')} icon="qr-code" />
+          <Chip label="Barcode" testID="mode-bar" pro={!isPro} active={activeMode === 'bar'} onPress={() => requirePro('barcodes', () => setMode('bar'))} icon="barcode" />
+          <Chip label="Batch" testID="open-batch" pro={!isPro} onPress={() => requirePro('batch', () => router.push('/batch'))} icon="layers" />
         </View>
 
-        {mode === 'qr' ? (
+        {activeMode === 'qr' ? (
           <>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingBottom: 14 }}>
               {QR_TYPES.map((t) => (
                 <Chip
                   key={t.id}
                   label={t.label}
-                  active={type === t.id}
-                  onPress={() => setType(t.id)}
+                  active={activeType === t.id}
+                  pro={isProQrType(t.id) && !isPro}
+                  testID={`qr-type-${t.id}`}
+                  onPress={() => (isProQrType(t.id) ? requirePro('upi', () => setType(t.id)) : setType(t.id))}
                   icon={t.icon as React.ComponentProps<typeof Chip>['icon']}
                 />
               ))}
             </ScrollView>
             <Card style={{ gap: 12 }}>
-              {FIELDS[type].map((f) => (
+              {FIELDS[activeType].map((f) => (
                 <View key={f.key}>
                   <Text style={s.label}>{f.label}</Text>
                   <TextInput
@@ -134,13 +146,13 @@ export default function CreateScreen() {
                     keyboardType={f.keyboard ?? 'default'}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    secureTextEntry={f.secure && type === 'wifi' && fields.security === 'nopass'}
+                    secureTextEntry={f.secure && activeType === 'wifi' && fields.security === 'nopass'}
                     multiline={f.multiline}
                     style={[s.input, f.multiline && { minHeight: 90, textAlignVertical: 'top' }]}
                   />
                 </View>
               ))}
-              {type === 'wifi' && (
+              {activeType === 'wifi' && (
                 <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}>
                   {[
                     ['WPA', 'WPA / WPA2 / WPA3'],
@@ -180,8 +192,8 @@ export default function CreateScreen() {
         <SectionTitle>Preview</SectionTitle>
         <Card style={{ alignItems: 'center', paddingVertical: 24 }}>
           {ready ? (
-            mode === 'qr' ? (
-              <QrView ref={shot} value={payload} size={240} fg={fg} ecc="M" />
+            activeMode === 'qr' ? (
+              <QrView ref={shot} value={payload} size={240} fg={activeFg} ecc="M" />
             ) : (
               <BarcodeView ref={shot} value={payload} format={format} width={290} height={130} />
             )
@@ -190,15 +202,16 @@ export default function CreateScreen() {
               Fill in the details and your code appears here.
             </Text>
           )}
-          {mode === 'qr' && ready && (
+          {activeMode === 'qr' && ready && (
             <View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>
               {SWATCHES.map((c) => (
                 <Pressable
                   key={c}
-                  accessibilityLabel={`Code colour ${c}`}
-                  onPress={() => setFg(c)}
-                  style={[s.swatch, { backgroundColor: c }, fg === c && { borderColor: colors.accent, borderWidth: 3 }]}
-                />
+                  accessibilityLabel={isProColor(c) && !isPro ? `Code colour ${c}, Pro` : `Code colour ${c}`}
+                  onPress={() => (isProColor(c) ? requirePro('colors', () => setFg(c)) : setFg(c))}
+                  style={[s.swatch, s.center, { backgroundColor: c }, activeFg === c && { borderColor: colors.accent, borderWidth: 3 }]}>
+                  {isProColor(c) && !isPro ? <Ionicons name="lock-closed" size={13} color="#FFFFFF" /> : null}
+                </Pressable>
               ))}
             </View>
           )}
@@ -218,6 +231,12 @@ export default function CreateScreen() {
             style={{ flex: 1 }}
           />
         </View>
+        {!isPro ? (
+          <Pressable testID="go-pro-create" accessibilityRole="button" onPress={() => router.push('/paywall')} style={s.proRow}>
+            <ProBadge />
+            <Text style={s.proRowText}>Barcodes, UPI, colours and batch codes come with Scanwise Pro</Text>
+          </Pressable>
+        ) : null}
         <Text style={s.note}>Codes you create never expire and are not tied to a server. Dark code on white scans best.</Text>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -237,6 +256,9 @@ const s = StyleSheet.create({
     paddingVertical: 12,
     fontSize: 16,
   },
+  center: { alignItems: 'center', justifyContent: 'center' },
+  proRow: { flexDirection: 'row', alignItems: 'center', gap: 8, justifyContent: 'center', marginTop: 14 },
+  proRowText: { color: colors.muted, fontSize: 12.5, flexShrink: 1 },
   swatch: { width: 34, height: 34, borderRadius: 17, borderWidth: 1, borderColor: colors.border },
   note: { color: colors.muted, fontSize: 12.5, textAlign: 'center', marginTop: 14, lineHeight: 18 },
 });

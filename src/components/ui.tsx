@@ -51,21 +51,37 @@ export function Chip({
   active,
   onPress,
   icon,
+  pro,
+  testID,
 }: {
   label: string;
   active?: boolean;
   onPress: () => void;
   icon?: IconName;
+  /** Shows a small PRO badge (feature needs Scanwise Pro). */
+  pro?: boolean;
+  testID?: string;
 }) {
   return (
     <Pressable
+      testID={testID}
       accessibilityRole="button"
+      accessibilityLabel={pro ? `${label}, Pro` : label}
       accessibilityState={{ selected: !!active }}
       onPress={onPress}
       style={[s.chip, active && { backgroundColor: colors.accentDark, borderColor: colors.accent }]}>
       {icon ? <Ionicons name={icon} size={15} color={active ? colors.accent : colors.muted} /> : null}
       <Text style={{ color: active ? colors.accent : colors.muted, fontWeight: '600', fontSize: 13 }}>{label}</Text>
+      {pro ? <ProBadge /> : null}
     </Pressable>
+  );
+}
+
+export function ProBadge() {
+  return (
+    <View style={s.pro}>
+      <Text style={s.proText}>PRO</Text>
+    </View>
   );
 }
 
@@ -102,6 +118,8 @@ const s = StyleSheet.create({
     borderColor: colors.border,
     backgroundColor: colors.card,
   },
+  pro: { backgroundColor: colors.caution, borderRadius: 6, paddingHorizontal: 5, paddingVertical: 1 },
+  proText: { color: '#1F1300', fontSize: 10, fontWeight: '800', letterSpacing: 0.5 },
   section: {
     color: colors.muted,
     fontSize: 12,
