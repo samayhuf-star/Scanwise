@@ -70,7 +70,7 @@ final class SimQATests: XCTestCase {
             let img = app.images.matching(NSPredicate(format: "label CONTAINS[c] %@ OR identifier CONTAINS[c] %@", "Photo", "Photo")).firstMatch
             let anyImg = img.exists ? img : app.scrollViews.images.firstMatch
             if anyImg.waitForExistence(timeout: 8) {
-                anyImg.tap()
+                if anyImg.isHittable { anyImg.tap() } else { anyImg.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap() }
                 sleep(1)
                 if let add = hittable("Add") { add.tap() }
                 scanOK = containing("No red flags found").waitForExistence(timeout: 12)
