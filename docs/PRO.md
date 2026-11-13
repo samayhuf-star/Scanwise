@@ -1,12 +1,11 @@
 # Scanwise Pro
 
-Auto-renewable subscription, one group: **Scanwise Pro**, plus an optional lifetime unlock behind `LIFETIME_ENABLED` in `src/lib/pro.ts` (ON; turn it off if lifetime is declined). StoreKit 2 through `expo-iap`, no RevenueCat, no server.
+Auto-renewable subscription, one group: **Scanwise Pro**. StoreKit 2 through `expo-iap`, no RevenueCat, no server.
 
 | Product id | Period | US price (ASC) | Intro offer |
 | --- | --- | --- | --- |
 | `com.samayhuf.scanwise.pro.monthly` | 1 month | $2.99 | 7-day free trial |
 | `com.samayhuf.scanwise.pro.yearly` | 1 year | $19.99 | 7-day free trial |
-| `com.samayhuf.scanwise.pro.lifetime` (optional, non-consumable) | one-time | $39.99 | none |
 
 Ids live in `src/lib/pro.ts` only. The UI shows the store's localized `displayPrice`, never a hard-coded price.
 The only file with prices is `qa/Scanwise.storekit` (simulator test config, not shipped).
@@ -27,9 +26,9 @@ The only file with prices is `qa/Scanwise.storekit` (simulator test config, not 
 - Batch QR codes: one code per line (up to 30), shared as one image sheet
 - History export as CSV
 
-## Not a hard paywall
+No lifetime option (Samay, 13 Nov 2026).
 
-Standard pricing (13 Nov 2026): $2.99/month and $19.99/year with a 7-day trial each, lifetime $39.99 with no trial. The lifetime option shows `Buy once for <price>`.
+## Not a hard paywall
 
 The app opens on Scan. The paywall opens only when a Pro feature is tapped (PRO badge) or from Go Pro
 (Settings, and the note under Create). It has a visible X, Restore purchases, Terms of Use, Privacy Policy,
@@ -40,7 +39,7 @@ only when expo-iap reports a free-trial intro offer and `isEligibleForIntroOffer
 ## Review notes (draft for ASC)
 
 Scanwise is fully usable for free: scanning, Safe-Link Shield, QR creation and recent history need no purchase.
-Scanwise Pro (monthly or yearly, each with a 7-day free trial for new subscribers, or a one-time lifetime purchase) unlocks the barcode generator,
+Scanwise Pro (monthly or yearly, each with a 7-day free trial for new subscribers) unlocks the barcode generator,
 UPI QR codes, custom colours, batch QR codes, unlimited history and CSV export. To see the paywall, tap
 Settings > Go Pro, or tap Barcode or Batch on the Create tab. Restore purchases is on the paywall and in Settings.
 No account or sign-in is required.
