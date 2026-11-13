@@ -329,6 +329,8 @@ final class SimQATests: XCTestCase {
         a.name = name
         a.lifetime = .keepAlways
         add(a)
+        // Review-video runs set SIM_QA_SLOW so each screen stays visible long enough to follow.
+        if ProcessInfo.processInfo.environment["SIM_QA_SLOW"] != nil { sleep(3) }
     }
 
     private func record(_ step: Int, _ name: String, _ pass: Bool, _ detail: String) {
