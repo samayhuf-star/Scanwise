@@ -6,14 +6,30 @@ export const BUNDLE_ID = 'com.samayhuf.scanwise';
 export const PRODUCT_IDS = {
   monthly: `${BUNDLE_ID}.pro.monthly`,
   yearly: `${BUNDLE_ID}.pro.yearly`,
+  lifetime: `${BUNDLE_ID}.pro.lifetime`,
 } as const;
+
+/** Optional one-time lifetime unlock (non-consumable, no trial). Turn OFF if Samay declines lifetime. */
+export const LIFETIME_ENABLED = true;
 
 export const SUBSCRIPTION_GROUP = 'Scanwise Pro';
 
-export const PRODUCT_CATALOG = [
-  { id: PRODUCT_IDS.yearly, kind: 'yearly' as const, type: 'subs' as const, label: 'Yearly', period: 'year' as const },
-  { id: PRODUCT_IDS.monthly, kind: 'monthly' as const, type: 'subs' as const, label: 'Monthly', period: 'month' as const },
+export type PlanKind = 'yearly' | 'monthly' | 'lifetime';
+export type ProductDef = { id: string; kind: PlanKind; type: 'subs' | 'in-app'; label: string; period: 'month' | 'year' | 'once' };
+
+const SUBSCRIPTIONS: ProductDef[] = [
+  { id: PRODUCT_IDS.yearly, kind: 'yearly', type: 'subs', label: 'Yearly', period: 'year' },
+  { id: PRODUCT_IDS.monthly, kind: 'monthly', type: 'subs', label: 'Monthly', period: 'month' },
 ];
+const LIFETIME: ProductDef = { id: PRODUCT_IDS.lifetime, kind: 'lifetime', type: 'in-app', label: 'Lifetime', period: 'once' };
+
+export function buildCatalog(lifetime: boolean): ProductDef[] {
+  return lifetime ? [...SUBSCRIPTIONS, LIFETIME] : [...SUBSCRIPTIONS];
+}
+
+export const PRODUCT_CATALOG: ProductDef[] = buildCatalog(LIFETIME_ENABLED);
+export const SUB_PRODUCT_IDS: string[] = PRODUCT_CATALOG.filter((p) => p.type === 'subs').map((p) => p.id);
+export const INAPP_PRODUCT_IDS: string[] = PRODUCT_CATALOG.filter((p) => p.type === 'in-app').map((p) => p.id);
 
 export const ALL_PRODUCT_IDS: string[] = PRODUCT_CATALOG.map((p) => p.id);
 export const isKnownProduct = (id: string | null | undefined) => !!id && ALL_PRODUCT_IDS.includes(id);

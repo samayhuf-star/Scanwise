@@ -34,22 +34,25 @@ export function freeTrialDays(p: ProductLike | null | undefined): number | null 
   return null;
 }
 
-type PlanText = { price: string; period: 'month' | 'year'; trialDays?: number | null };
+type PlanText = { price: string; period: 'month' | 'year' | 'once'; trialDays?: number | null };
 
 /** Main button. The trial wording shows only when the store reports an eligible free trial. */
 export function ctaText(plan: PlanText): string {
+  if (plan.period === 'once') return `Buy once for ${plan.price}`;
   if (plan.trialDays && plan.trialDays > 0) return `Try ${plan.trialDays} days free, then ${plan.price}/${plan.period}`;
   return `Subscribe for ${plan.price}/${plan.period}`;
 }
 
 /** Plan row. Price always comes from the store, never from code. */
 export function planLine(plan: PlanText): string {
+  if (plan.period === 'once') return `${plan.price} once, yours to keep`;
   if (plan.trialDays && plan.trialDays > 0) return `${plan.trialDays} days free, then ${plan.price}/${plan.period}`;
   return `${plan.price}/${plan.period}`;
 }
 
-/** Auto-renew disclosure under the button. */
-export function renewalDisclosure(hasTrial: boolean, store: 'Apple ID' | 'Google Play' = 'Apple ID'): string {
+/** Auto-renew disclosure under the button. A lifetime purchase is a single charge with no renewal. */
+export function renewalDisclosure(hasTrial: boolean, store: 'Apple ID' | 'Google Play' = 'Apple ID', lifetime = false): string {
+  if (lifetime) return `Lifetime is a one-time purchase charged to your ${store} account. It does not renew.`;
   return [
     hasTrial ? 'After the free trial, the subscription starts automatically unless you cancel at least 24 hours before the trial ends.' : '',
     `Payment is charged to your ${store} account. Scanwise Pro renews automatically at the same price each period unless cancelled at least 24 hours before the period ends.`,

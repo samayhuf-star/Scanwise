@@ -128,16 +128,17 @@ final class SimQATests: XCTestCase {
         var payOK = false
         var payDetail = "paywall did not open"
         if any("paywall-screen").waitForExistence(timeout: 10) {
-            let y = hasText(["$9.99"])
+            let y = hasText(["$19.99"])
             let m = hasText(["$2.99"])
             let trial = hasText(["7 days free"])
-            let cta = hasText(["Try 7 days free, then $9.99/year"])
+            let cta = hasText(["Try 7 days free, then $19.99/year"])
+            let life = hasText(["$39.99"])
             let disclosure = containing("renews automatically").exists
             let restore = any("paywall-restore").exists
             let terms = containing("Terms of Use").exists && containing("Privacy Policy").exists
             let close = any("paywall-close").exists
-            payOK = y && m && trial && cta && disclosure && restore && terms && close
-            payDetail = "settingsFree=\(freePlan) yearly $9.99=\(y) monthly $2.99=\(m) trial=\(trial) cta=\(cta) disclosure=\(disclosure) restore=\(restore) terms+privacy=\(terms) X=\(close) unavailable=\(any("plans-unavailable").exists)"
+            payOK = y && m && life && trial && cta && disclosure && restore && terms && close
+            payDetail = "settingsFree=\(freePlan) yearly $19.99=\(y) monthly $2.99=\(m) lifetime $39.99=\(life) trial=\(trial) cta=\(cta) disclosure=\(disclosure) restore=\(restore) terms+privacy=\(terms) X=\(close) unavailable=\(any("plans-unavailable").exists)"
         }
         shot("06-paywall")
         record(6, "Paywall prices, trial, X, Restore, links", payOK, payDetail)

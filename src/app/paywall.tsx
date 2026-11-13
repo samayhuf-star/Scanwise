@@ -7,7 +7,7 @@ import Animated, { FadeInDown, ReduceMotion } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button } from '@/components/ui';
 import { ctaText, planLine, renewalDisclosure } from '@/lib/introOffer';
-import { APPLE_EULA_URL, FREE_FEATURES, PRIVACY_URL, PRO_FEATURES, TERMS_URL, type ProFeature } from '@/lib/pro';
+import { APPLE_EULA_URL, FREE_FEATURES, PRIVACY_URL, PRO_FEATURES, TERMS_URL, type PlanKind, type ProFeature } from '@/lib/pro';
 import { buy, loadPlans, restore, type Plan } from '@/lib/purchases';
 import { setPro, usePro } from '@/lib/store';
 import { colors, radius } from '@/lib/theme';
@@ -21,7 +21,7 @@ export default function PaywallScreen() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<'yearly' | 'monthly'>('yearly');
+  const [selected, setSelected] = useState<PlanKind>('yearly');
   const [busy, setBusy] = useState<'buy' | 'restore' | null>(null);
 
   useEffect(() => {
@@ -151,7 +151,8 @@ export default function PaywallScreen() {
               />
             ) : null}
             <Text testID="renewal-disclosure" style={s.legal}>
-              {renewalDisclosure(!!plan?.trialDays, store)}
+              {plan?.kind === 'lifetime' ? `${renewalDisclosure(false, store, true)} ` : ''}
+              {renewalDisclosure(plan?.kind !== 'lifetime' && !!plan?.trialDays, store)}
             </Text>
           </Animated.View>
         )}

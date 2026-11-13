@@ -18,12 +18,17 @@ describe('freeTrialDays', () => {
 describe('paywall copy', () => {
   it('shows the trial CTA only for an eligible trial', () => {
     assert.equal(ctaText({ price: '$2.99', period: 'month', trialDays: 7 }), 'Try 7 days free, then $2.99/month');
-    assert.equal(ctaText({ price: '$9.99', period: 'year', trialDays: 7 }), 'Try 7 days free, then $9.99/year');
+    assert.equal(ctaText({ price: '$19.99', period: 'year', trialDays: 7 }), 'Try 7 days free, then $19.99/year');
     assert.equal(ctaText({ price: '$2.99', period: 'month', trialDays: null }), 'Subscribe for $2.99/month');
   });
   it('uses the store price string as given (localized)', () => {
     assert.equal(planLine({ price: '₹299.00', period: 'month', trialDays: null }), '₹299.00/month');
-    assert.equal(planLine({ price: '9,99 €', period: 'year', trialDays: 7 }), '7 days free, then 9,99 €/year');
+    assert.equal(planLine({ price: '19,99 €', period: 'year', trialDays: 7 }), '7 days free, then 19,99 €/year');
+  });
+  it('lifetime is a one-time price with no trial wording', () => {
+    assert.equal(ctaText({ price: '$39.99', period: 'once', trialDays: 7 }), 'Buy once for $39.99');
+    assert.equal(planLine({ price: '$39.99', period: 'once' }), '$39.99 once, yours to keep');
+    assert.match(renewalDisclosure(false, 'Apple ID', true), /does not renew/);
   });
   it('discloses auto-renewal, with the trial sentence only when there is a trial', () => {
     assert.match(renewalDisclosure(true), /^After the free trial/);

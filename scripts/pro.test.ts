@@ -9,6 +9,11 @@ import {
   BUNDLE_ID,
   FREE_HISTORY_LIMIT,
   FREE_QR_TYPES,
+  INAPP_PRODUCT_IDS,
+  LIFETIME_ENABLED,
+  PRODUCT_CATALOG,
+  SUB_PRODUCT_IDS,
+  buildCatalog,
   PRIVACY_URL,
   PRODUCT_IDS,
   TERMS_URL,
@@ -28,11 +33,19 @@ describe('product ids', () => {
     assert.equal(app.expo.ios.bundleIdentifier, BUNDLE_ID);
     assert.equal(PRODUCT_IDS.monthly, 'com.samayhuf.scanwise.pro.monthly');
     assert.equal(PRODUCT_IDS.yearly, 'com.samayhuf.scanwise.pro.yearly');
+    assert.equal(PRODUCT_IDS.lifetime, 'com.samayhuf.scanwise.pro.lifetime');
+  });
+  it('lifetime sits behind one flag, currently on', () => {
+    assert.equal(LIFETIME_ENABLED, true);
+    assert.deepEqual(PRODUCT_CATALOG.map((p) => p.kind), ['yearly', 'monthly', 'lifetime']);
+    assert.deepEqual(buildCatalog(false).map((p) => p.kind), ['yearly', 'monthly']);
+    assert.deepEqual(SUB_PRODUCT_IDS.sort(), [PRODUCT_IDS.monthly, PRODUCT_IDS.yearly].sort());
+    assert.deepEqual(INAPP_PRODUCT_IDS, [PRODUCT_IDS.lifetime]);
   });
   it('knows only its own products', () => {
-    assert.deepEqual([...ALL_PRODUCT_IDS].sort(), [PRODUCT_IDS.monthly, PRODUCT_IDS.yearly].sort());
+    assert.deepEqual([...ALL_PRODUCT_IDS].sort(), [PRODUCT_IDS.lifetime, PRODUCT_IDS.monthly, PRODUCT_IDS.yearly].sort());
     assert.equal(isKnownProduct(PRODUCT_IDS.monthly), true);
-    assert.equal(isKnownProduct('com.samayhuf.scanwise.pro.lifetime'), false);
+    assert.equal(isKnownProduct('com.samayhuf.scanwise.pro.weekly'), false);
     assert.equal(isKnownProduct(undefined), false);
   });
   it('legal links are https pages', () => {

@@ -19,7 +19,7 @@ import {
   type ProductOrSubscription,
   type Purchase,
 } from 'expo-iap';
-import { ALL_PRODUCT_IDS, isKnownProduct, PRODUCT_CATALOG } from './pro';
+import { ALL_PRODUCT_IDS, INAPP_PRODUCT_IDS, isKnownProduct, PRODUCT_CATALOG, SUB_PRODUCT_IDS } from './pro';
 import { freeTrialDays, type ProductLike } from './introOffer';
 
 export type Plan = (typeof PRODUCT_CATALOG)[number] & {
@@ -154,19 +154,28 @@ export async function loadPlans(): Promise<PlansLoad> {
   }
   let subs: ProductOrSubscription[] = [];
   try {
-    subs = (await fetchProducts({ skus: ALL_PRODUCT_IDS, type: 'subs' })) ?? [];
+    subs = ((await fetchProducts({ skus: SUB_PRODUCT_IDS, type: 'subs' })) ?? []) as ProductOrSubscription[];
   } catch (e) {
     logErr('fetchProducts subs', e);
   }
+  // Fetched separately so a lifetime failure never hides the subscriptions.
+  let inApp: ProductOrSubscription[] = [];
+  if (INAPP_PRODUCT_IDS.length) {
+    try {
+      inApp = ((await fetchProducts({ skus: INAPP_PRODUCT_IDS, type: 'in-app' })) ?? []) as ProductOrSubscription[];
+    } catch (e) {
+      logErr('fetchProducts in-app', e);
+    }
+  }
   const byId = new Map<string, ProductOrSubscription>();
-  for (const product of subs) {
+  for (const product of [...subs, ...inApp]) {
     if (product?.id && product.displayPrice) byId.set(product.id, product);
   }
   const plans: Plan[] = [];
   for (const def of PRODUCT_CATALOG) {
     const product = byId.get(def.id);
     if (!product) continue;
-    const days = freeTrialDays(product as unknown as ProductLike);
+    const days = def.type === 'subs' ? freeTrialDays(product as unknown as ProductLike) : null;
     const trialDays = days && (await introEligible(product)) ? days : null;
     plans.push({ ...def, price: product.displayPrice, product, trialDays });
   }
@@ -191,15 +200,24 @@ export async function refreshEntitlements(): Promise<boolean> {
       }
     }
     try {
-      if (await hasActiveSubscriptions(ALL_PRODUCT_IDS)) return true;
+      if (await hasActiveSubscriptions(SUB_PRODUCT_IDS)) return true;
     } catch (e) {
       logErr('hasActiveSubscriptions', e);
     }
     try {
-      const active = await getActiveSubscriptions(ALL_PRODUCT_IDS);
+      const active = await getActiveSubscriptions(SUB_PRODUCT_IDS);
       if (active.some((s) => s.isActive)) return true;
     } catch (e) {
       logErr('getActiveSubscriptions', e);
+    }
+    // Android lifetime: an owned non-consumable shows up in the available purchases (no sign-in prompt on Play).
+    if (Platform.OS !== 'ios' && INAPP_PRODUCT_IDS.length) {
+      try {
+        const owned = await getAvailablePurchases();
+        if (owned.some((p) => INAPP_PRODUCT_IDS.includes(p.productId) && p.purchaseState === 'purchased')) return true;
+      } catch (e) {
+        logErr('getAvailablePurchases lifetime', e);
+      }
     }
     return false;
   } catch (e) {

@@ -1,7 +1,23 @@
 {
   "identifier": "5C4A1E00",
   "nonRenewingSubscriptions": [],
-  "products": [],
+  "products": [
+    {
+      "displayPrice": "39.99",
+      "familyShareable": false,
+      "internalID": "5C4A1E04",
+      "localizations": [
+        {
+          "description": "All Pro features, one-time purchase",
+          "displayName": "Scanwise Pro Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.samayhuf.scanwise.pro.lifetime",
+      "referenceName": "Scanwise Pro Lifetime",
+      "type": "NonConsumable"
+    }
+  ],
   "settings": {
     "_applicationInternalID": "6833134833",
     "_failTransactionsEnabled": false,
@@ -18,7 +34,7 @@
         {
           "adHocOffers": [],
           "codeOffers": [],
-          "displayPrice": "9.99",
+          "displayPrice": "19.99",
           "familyShareable": false,
           "groupNumber": 1,
           "internalID": "5C4A1E02",

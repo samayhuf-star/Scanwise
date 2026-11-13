@@ -11,7 +11,7 @@ Same route as Klenzer's `klenzer/sim-qa`: the generic workflow `.github/workflow
 
 Steps: 1 launch on Scan with no paywall, 2 scan the seeded QR from the photo picker (falls back to
 `scanwise://qa/scan?raw=` which runs the same scan handler), 3 Safe-Link Shield flags a risky link,
-4 QR generator, 5 Barcode opens the paywall and X closes it, 6 paywall prices $2.99 and $9.99 with the 7-day
+4 QR generator, 5 Barcode opens the paywall and X closes it, 6 paywall prices $2.99, $19.99 and lifetime $39.99 with the 7-day
 trial CTA, X, Restore, Terms and Privacy, 7 StoreKit test purchase (monthly), 8 Pro unlocks barcodes,
 9 Restore purchases from Settings. Screenshots, `results.json` and `summary.md` go to `$OUT`.
 
