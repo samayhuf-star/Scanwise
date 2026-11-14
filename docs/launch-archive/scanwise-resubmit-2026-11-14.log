@@ -14,7 +14,7 @@ contains 'Sign in to continue': False
 contains 'Sorry, the file you have requested does not exist': False
 title: ScreenRecording_11-14-2026 08-43-59_1.mp4 - Google Drive
 itemprop name: ScreenRecording_11-14-2026 08-43-59_1.mp4
-filename context: ScreenRecording_11-14-2026 08-43-59_1.mp4 - Google Drive</title><script nonce="D4MtPP2qdzYaeOLMFTdC-A">           window['_DRIVE_VIEWER_IVIS'] = document.visibilityState;         </script><meta property="og:title" content="ScreenRecording_11-14-2026 08-43-59_1.mp4"><meta property="og:type" content="article"><meta property="og:site_name" content="Google Docs"><meta property="og:url" content="https://drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing&amp;usp=embed_facebook"><link rel="shortcut icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_favicon_2026_32dp.png"><script nonce="D4MtPP2qdzYaeOLMFTdC-A"> window['_DRIVE_VIEWER_ctiming']['cls']=performance.now(); </script><link rel="stylesheet" href="https://www.gstatic.com/_/apps-fileview/_/ss/k=apps-filevi
+filename context: ScreenRecording_11-14-2026 08-43-59_1.mp4 - Google Drive</title><script nonce="D4MtPP2qdzYaeOLMFTdC-A">           window['_DRIVE_VIEWER_IVIS'] = document.visibilityState;         </script><meta property="og:title" content="ScreenRecording_11-14-2026 08-43-59_1.mp4"><meta property="og:type" content="article"><meta property="og:site_name" content="Google Docs"><meta property="og:url" content="[private recording link redacted]"><link rel="shortcut icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_favicon_2026_32dp.png"><script nonce="D4MtPP2qdzYaeOLMFTdC-A"> window['_DRIVE_VIEWER_ctiming']['cls']=performance.now(); </script><link rel="stylesheet" href="https://www.gstatic.com/_/apps-fileview/_/ss/k=apps-filevi
 === headers Location / set-cookie summary ===
 HTTP/2 200 
 content-type: text/html; charset=utf-8
@@ -87,7 +87,7 @@ INC builds ddfd6d4a-720e-4c70-ad47-c159289853b7 {
 INC appStoreReviewDetails 77c38027-f2be-4ef6-bb2b-714c3dbcbf6f {
   "contactFirstName": "Samay",
   "contactLastName": "Vashsht",
-  "contactPhone": "+91 9953710111",
+  "contactPhone": "[phone redacted]",
   "contactEmail": "samayhuf@gmail.com",
   "demoAccountName": null,
   "demoAccountPassword": null,
@@ -293,7 +293,7 @@ ZmFhMDAxMDktYjJmYS00 -> b'faa00109-b2fa-40a5-bed7-d2accfc56b0e|19|1190e161-f1df-
     "attributes": {
       "contactFirstName": "Samay",
       "contactLastName": "Vashsht",
-      "contactPhone": "+91 9953710111",
+      "contactPhone": "[phone redacted]",
       "contactEmail": "samayhuf@gmail.com",
       "demoAccountName": null,
       "demoAccountPassword": null,
@@ -607,7 +607,7 @@ GROUP 22575651 {'referenceName': 'Scanwise Pro'}
         "familySharable": false,
         "state": "READY_TO_SUBMIT",
         "subscriptionPeriod": "ONE_MONTH",
-        "reviewNote": "Scanwise is fully usable for free: scanning, Safe-Link Shield, QR creation and recent history need no purchase. Scanwise Pro (monthly or yearly, each with a 7-day free trial for new subscribers) unlocks the barcode generator, UPI QR codes, custom colours, batch QR codes, unlimited history and CSV export. To see the paywall, tap Settings > Go Pro, or tap Barcode or Batch on the Create tab. Restore purchases is on the paywall and in Settings. No account is required. Contact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.",
+        "reviewNote": "Scanwise is fully usable for free: scanning, Safe-Link Shield, QR creation and recent history need no purchase. Scanwise Pro (monthly or yearly, each with a 7-day free trial for new subscribers) unlocks the barcode generator, UPI QR codes, custom colours, batch QR codes, unlimited history and CSV export. To see the paywall, tap Settings > Go Pro, or tap Barcode or Batch on the Create tab. Restore purchases is on the paywall and in Settings. No account is required. Contact: Samay Vashsht, [phone redacted], samayhuf@gmail.com.",
         "groupLevel": 2,
         "multiSeatStatus": "ENABLED",
         "marketSettings": [
@@ -817,7 +817,7 @@ GET reviewDetail status 200
 {
   "contactFirstName": "Samay",
   "contactLastName": "Vashsht",
-  "contactPhone": "+91 9953710111",
+  "contactPhone": "[phone redacted]",
   "contactEmail": "samayhuf@gmail.com",
   "demoAccountName": null,
   "demoAccountPassword": null,
@@ -826,8 +826,8 @@ GET reviewDetail status 200
   "notes_match_file": true,
   "notes_has_link": true,
   "notes_has_physical": true,
-  "notes_preview_first_180": "1. Screen recording\nScreen recording (recorded on a physical iPhone, starting at app launch): https://drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing\nThe",
-  "notes_preview_last_120": "ps://samayhuf-star.github.io/app-legal/scanwise/terms.html\n\nContact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.\n"
+  "notes_preview_first_180": "1. Screen recording\nScreen recording (recorded on a physical iPhone, starting at app launch): [private recording link redacted]",
+  "notes_preview_last_120": "ps://samayhuf-star.github.io/app-legal/scanwise/terms.html\n\nContact: Samay Vashsht, [phone redacted], samayhuf@gmail.com.\n"
 }
 
 === 2026-11-14 09:25:08 Asia/Dhaka STEP 4: build + releaseType + price readback ===
@@ -1032,7 +1032,7 @@ API does not expose Resolution Center / App Review message threads (probed endpo
 
 ========== FINAL SUMMARY 2026-11-14 08:58:18 IST ==========
 Link check: PUBLIC. curl HTTP 200, no login redirect, title ScreenRecording_11-14-2026 08-43-59_1.mp4 visible. Drive permissions anyoneWithLink (role writer, unchanged). size=12582912 bytes (12.0 MiB). created 2026-11-14T03:18:19.543Z = 09:18 AM Asia/Dhaka.
-Notes: 3998 characters, saved to /home/box/shared/app-monitor/reports/review-notes/scanwise-final-2026-11-14.txt and PATCHed to appStoreReviewDetail 77c38027-f2be-4ef6-bb2b-714c3dbcbf6f. Readback matches. Contact Samay Vashsht, +91 9953710111, samayhuf@gmail.com, demoAccountRequired=false.
+Notes: 3998 characters, saved to /home/box/shared/app-monitor/reports/review-notes/scanwise-final-2026-11-14.txt and PATCHed to appStoreReviewDetail 77c38027-f2be-4ef6-bb2b-714c3dbcbf6f. Readback matches. Contact Samay Vashsht, [phone redacted], samayhuf@gmail.com, demoAccountRequired=false.
 Build: 5 (ddfd6d4a-720e-4c70-ad47-c159289853b7) VALID, attached to version 1.0 (05537646-a75a-4269-9b7f-ae09d04a8dd5). releaseType AFTER_APPROVAL (automatic release). App price USA customerPrice 0.0 (Free). No pricing changes.
 Resubmit: existing UNRESOLVED_ISSUES submission faa00109-b2fa-40a5-bed7-d2accfc56b0e. First PATCH submitted=true returned 409 STATE_ERROR 'Version is not ready to be submitted yet' because the appStoreVersion item was still REJECTED. PATCH reviewSubmissionItems resolved=true moved that item to READY_FOR_REVIEW. Second PATCH submitted=true returned 200. State WAITING_FOR_REVIEW. submittedDate 2026-11-14T03:27:52.835Z = 09:27:52 AM Asia/Dhaka.
 Items (all READY_FOR_REVIEW): appStoreVersion 1.0; monthly subscriptionVersion 10401617-50f6-4bce-abb2-7cbe57b1dabf (6834351860); yearly subscriptionVersion 886980a3-2988-47ab-9e1e-75266ee35d75 (6834351714); subscriptionGroupVersion 1190e161-f1df-44c4-921a-e08e5c769311 (group 22575651 Scanwise Pro). No non-consumable IAPs.

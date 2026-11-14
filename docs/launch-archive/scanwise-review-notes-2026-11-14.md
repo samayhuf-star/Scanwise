@@ -42,4 +42,4 @@ Not applicable. Scanwise does not operate in a regulated industry: it is not a m
 Privacy Policy: https://samayhuf-star.github.io/app-legal/scanwise/privacy.html
 Terms of Use: https://samayhuf-star.github.io/app-legal/scanwise/terms.html
 
-Contact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.
+Contact: Samay Vashsht, [phone redacted], samayhuf@gmail.com.

@@ -77,7 +77,7 @@ The questionnaire is filled. `appStoreAgeRating` is **`SEVENTEEN_PLUS`**. `unres
 
 Review detail `77c38027-f2be-4ef6-bb2b-714c3dbcbf6f` is present:
 
-- Contact: **Samay Vashsht**, **+91 9953710111**, **samayhuf@gmail.com**
+- Contact: **Samay Vashsht**, **[phone redacted]**, **samayhuf@gmail.com**
 - Demo account not required
 - Notes explain the free scanner, Safe-Link Shield, basic QR creation and recent history; how to reach Pro (Settings → Go Pro, or Barcode / Batch on Create); that Scanwise Pro is a **StoreKit 2** auto-renewable subscription at $2.99/month or $19.99/year with a 7-day trial; and that Restore is on the paywall and in Settings.
 

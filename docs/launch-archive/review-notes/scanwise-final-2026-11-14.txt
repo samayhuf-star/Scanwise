@@ -1,5 +1,5 @@
 1. Screen recording
-Screen recording (recorded on a physical iPhone, starting at app launch): https://drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing
+Screen recording (recorded on a physical iPhone, starting at app launch): [private recording link redacted]
 The recording shows launch on the Scan tab with no paywall; scanning a QR from a photo with a Safe-Link Shield result; a Danger verdict on a risky link; creating a free QR; the paywall from Settings > Go Pro with both prices and the 7-day trial; a sandbox monthly purchase that unlocks Scanwise Pro; and Restore purchases. There is no account, login or user-generated content.
 
 2. Purpose and target audience
@@ -35,4 +35,4 @@ None. Scanwise is not a medical, financial or other regulated-industry service a
 Privacy Policy: https://samayhuf-star.github.io/app-legal/scanwise/privacy.html
 Terms of Use: https://samayhuf-star.github.io/app-legal/scanwise/terms.html
 
-Contact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.
+Contact: Samay Vashsht, [phone redacted], samayhuf@gmail.com.
