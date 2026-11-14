@@ -1,0 +1,14 @@
+Hello App Review,
+
+Thank you for the Guideline 2.1 information request. We have added the requested information to the App Review Notes for Scanwise 1.0 (build 5) and are resubmitting the same version.
+
+Screen recording (recorded on a physical iPhone, starting at app launch):
+[private recording link redacted]
+
+The recording shows the app launching to the Scan tab with no paywall, scanning a QR code from a photo with a Safe-Link Shield result, a Danger verdict on a risky link, creating a free QR code, the Scanwise Pro paywall with both prices and the 7-day trial, a sandbox monthly purchase that unlocks Pro, and Restore purchases. There is no account registration, login, account deletion or user-generated content.
+
+The notes now also cover: the app's purpose and target audience (a general consumer QR and barcode scanner and generator); setup with no login credentials or sample files required; paid features reached from Settings > Go Pro or Barcode/Batch on the Create tab; the two auto-renewable subscriptions (US $2.99/month and US $19.99/year, each with a 7-day trial) submitted with this version; external services (Apple In-App Purchase only, no backend, Safe-Link Shield is on-device); that features are the same in every region; and that the app is not a regulated-industry service and uses no licensed third-party material.
+
+Contact: Samay Vashsht, [phone redacted], samayhuf@gmail.com.
+
+Thank you.
