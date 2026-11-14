@@ -3,9 +3,13 @@ import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Alert, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Chip } from '@/components/ui';
+import { Paths, File } from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
+import { Chip, ProBadge } from '@/components/ui';
 import { tap } from '@/lib/actions';
-import { removeHistory, toggleFavorite, useHistory, type HistoryItem } from '@/lib/store';
+import { requirePro } from '@/lib/entitlement';
+import { FREE_HISTORY_LIMIT, historyCsv, visibleHistory } from '@/lib/pro';
+import { removeHistory, toggleFavorite, useHistory, usePro, type HistoryItem } from '@/lib/store';
 import { colors, radius, verdictColor } from '@/lib/theme';
 
 type Filter = 'all' | 'scan' | 'create' | 'fav';
@@ -21,7 +25,9 @@ const ago = (ts: number) => {
 
 export default function HistoryScreen() {
   const insets = useSafeAreaInsets();
-  const items = useHistory();
+  const all = useHistory();
+  const isPro = usePro();
+  const { visible: items, hidden } = useMemo(() => visibleHistory(all, isPro), [all, isPro]);
   const [q, setQ] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
 
@@ -35,12 +41,33 @@ export default function HistoryScreen() {
     });
   }, [items, q, filter]);
 
+  const exportCsv = () =>
+    requirePro('export', async () => {
+      try {
+        const f = new File(Paths.cache, 'scanwise-history.csv');
+        if (f.exists) f.delete();
+        f.create();
+        f.write(historyCsv(all));
+        if (await Sharing.isAvailableAsync()) await Sharing.shareAsync(f.uri, { mimeType: 'text/csv', dialogTitle: 'Export history' });
+        else Alert.alert('Sharing is not available on this device');
+      } catch {
+        Alert.alert('Could not export history', 'Please try again.');
+      }
+    });
+
   const open = (h: HistoryItem) =>
     router.push({ pathname: '/result', params: { raw: h.raw, format: h.format, src: 'history' } });
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg, paddingTop: insets.top + 12 }}>
-      <Text style={s.title}>History</Text>
+      <View style={s.titleRow}>
+        <Text style={[s.title, { paddingHorizontal: 0, marginBottom: 0 }]}>History</Text>
+        <Pressable testID="export-history" accessibilityRole="button" accessibilityLabel={isPro ? 'Export history' : 'Export history, Pro'} hitSlop={10} onPress={exportCsv} style={s.exportBtn}>
+          <Ionicons name="download-outline" size={18} color={colors.accent} />
+          <Text style={s.exportText}>Export</Text>
+          {!isPro ? <ProBadge /> : null}
+        </Pressable>
+      </View>
       <View style={s.searchWrap}>
         <Ionicons name="search" size={18} color={colors.muted} />
         <TextInput
@@ -68,9 +95,23 @@ export default function HistoryScreen() {
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 80 }}>
             <Ionicons name="time-outline" size={48} color={colors.border} />
             <Text style={{ color: colors.muted, marginTop: 10 }}>
-              {items.length ? 'Nothing matches.' : 'Scans and codes you create show up here.'}
+              {all.length ? 'Nothing matches.' : 'Scans and codes you create show up here.'}
             </Text>
           </View>
+        }
+        ListFooterComponent={
+          hidden > 0 ? (
+            <Pressable testID="history-locked" accessibilityRole="button" onPress={() => requirePro('history')} style={s.locked}>
+              <Ionicons name="lock-closed" size={18} color={colors.caution} />
+              <View style={{ flex: 1 }}>
+                <Text style={s.rowTitle}>
+                  {hidden} older {hidden === 1 ? 'entry' : 'entries'} saved
+                </Text>
+                <Text style={s.rowRaw}>Free shows the newest {FREE_HISTORY_LIMIT} plus starred items. Unlock all with Scanwise Pro.</Text>
+              </View>
+              <ProBadge />
+            </Pressable>
+          ) : undefined
         }
         renderItem={({ item: h }) => (
           <Pressable
@@ -114,6 +155,19 @@ export default function HistoryScreen() {
 }
 
 const s = StyleSheet.create({
+  titleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, marginBottom: 12 },
+  exportBtn: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  exportText: { color: colors.accent, fontWeight: '700', fontSize: 14 },
+  locked: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    padding: 14,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: colors.caution,
+  },
   title: { color: colors.text, fontSize: 30, fontWeight: '800', paddingHorizontal: 16, marginBottom: 12 },
   searchWrap: {
     flexDirection: 'row',

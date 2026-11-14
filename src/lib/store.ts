@@ -3,7 +3,7 @@ import { useSyncExternalStore } from 'react';
 import type { ContentKind, Verdict } from './shield';
 
 /** Tiny persisted store: sync reads for the UI, async writes to disk. */
-function createStore<T>(key: string, initial: T) {
+export function createStore<T>(key: string, initial: T) {
   let state = initial;
   let loaded = false;
   const listeners = new Set<() => void>();
@@ -94,3 +94,14 @@ export function removeHistory(id: string) {
 export function clearHistory(keepFavorites = true) {
   historyStore.set(keepFavorites ? historyStore.get().filter((h) => h.fav) : []);
 }
+
+/* ---------- Scanwise Pro ---------- */
+
+/** Last known Pro state, cached so Pro features stay unlocked offline. StoreKit is re-checked on every launch. */
+export type ProState = { active: boolean; checkedAt: number };
+const proStore = createStore<ProState>('scanwise.pro.v1', { active: false, checkedAt: 0 });
+
+export const getPro = () => proStore.get().active;
+export const setPro = (active: boolean) => proStore.set({ active, checkedAt: Date.now() });
+const proActive = () => proStore.get().active;
+export const usePro = () => useSyncExternalStore(proStore.subscribe, proActive, proActive);

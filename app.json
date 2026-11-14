@@ -52,7 +52,8 @@
           "image": "./assets/splash-icon.png",
           "imageWidth": 200
         }
-      ]
+      ],
+      "expo-iap"
     ],
     "owner": "krosz",
     "extra": {
