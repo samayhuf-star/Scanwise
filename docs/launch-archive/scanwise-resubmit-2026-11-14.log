@@ -1,0 +1,1040 @@
+2026-11-14 08:49:30 IST
+=== STEP 1: Check Drive recording link (no cookies) ===
+--- curl -sI (headers, follow first redirects limited) ---
+--- curl body (first 8k, no cookies) ---
+=== STEP 1 continued: extract title, size, login checks from body ===
+http_code=200, redirect_count=0, no ServiceLogin redirect in headers
+body_bytes 84520
+contains 'ServiceLogin': True
+contains 'accounts.google.com/ServiceLogin': True
+contains 'You need access': False
+contains 'You need permission': False
+contains 'request access': False
+contains 'Sign in to continue': False
+contains 'Sorry, the file you have requested does not exist': False
+title: ScreenRecording_11-14-2026 08-43-59_1.mp4 - Google Drive
+itemprop name: ScreenRecording_11-14-2026 08-43-59_1.mp4
+filename context: ScreenRecording_11-14-2026 08-43-59_1.mp4 - Google Drive</title><script nonce="D4MtPP2qdzYaeOLMFTdC-A">           window['_DRIVE_VIEWER_IVIS'] = document.visibilityState;         </script><meta property="og:title" content="ScreenRecording_11-14-2026 08-43-59_1.mp4"><meta property="og:type" content="article"><meta property="og:site_name" content="Google Docs"><meta property="og:url" content="https://drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing&amp;usp=embed_facebook"><link rel="shortcut icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_favicon_2026_32dp.png"><script nonce="D4MtPP2qdzYaeOLMFTdC-A"> window['_DRIVE_VIEWER_ctiming']['cls']=performance.now(); </script><link rel="stylesheet" href="https://www.gstatic.com/_/apps-fileview/_/ss/k=apps-filevi
+=== headers Location / set-cookie summary ===
+HTTP/2 200 
+content-type: text/html; charset=utf-8
+set-cookie: NID=CuQBCAESlgEBM9Agl4ObzrVc-_7y-RNv2cyTBTohMrvDNNV31ZzzM0TGez-9H2cCycaDwWF24ooVrTkGDCamjX--alOA81UxOePH9YEBXfP6WEwHZqc9fjJBzj5ocfccG2OYdUumBhL9hC9Gd7cw-uZjIP4KX4uUwEIh1Q4UFcS0kOzz3TLz7LuTPT8TkCvj82E__RK7NY7_djR-vaMoATJFAXBKQs99-IKTDV5Dgh98YLwJzz0VqA2Go26cvUApPOkEQ7xIkQD-QiDRDb2jbQxZqszZoHFn11E72rcbXPLdf9jOCVsP; expires=Sun, 16-May-2027 03:19:30 GMT; path=/; domain=.google.com; HttpOnly
+
+=== STEP 1 RESULT: LINK IS PUBLIC ===
+curl: HTTP 200, redirect_count=0, final URL stayed on drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing
+Page title visible without sign-in: ScreenRecording_11-14-2026 08-43-59_1.mp4 - Google Drive
+No 'You need access' / permission request. ServiceLogin appears only as the standard Google header Sign in button, not a redirect or access wall.
+Drive API (get_file_permissions, no sharing changes made):
+  permission type=anyone id=anyoneWithLink role=writer
+  owner: samay@krosz.com (not printed further)
+Drive metadata: name=ScreenRecording_11-14-2026 08-43-59_1.mp4 mimeType=video/mp4 size=12582912 bytes (12.0 MiB) shared=true trashed=false
+  createdTime=2026-11-14T03:18:19.543Z (09:18 AM Asia/Dhaka)
+  modifiedTime=2026-11-14T03:18:43.716Z (09:18 AM Asia/Dhaka)
+=== STEP 2: notes source checks ===
+source_chars 6795 source_bytes 6831
+ellipsis_char False three_dots_as_ellipsis_word False
+AI mentions: []
+placeholder-like lines:
+  L2: [Screen recording link: TO ADD, file scanwise-review-flow.mp4, 2 min 45 s]
+replacement_len 156
+chars 6314 bytes 6340 limit_ok False
+bad [] ai_hits []
+has_link True
+has_physical True
+over_by 2314
+=== STEP 2: final notes written ===
+path /home/box/shared/app-monitor/reports/review-notes/scanwise-final-2026-11-14.txt
+chars 3998 bytes 4018
+trimmed from source 6795 chars in scanwise-review-notes-2026-11-14.md to fit the 4000-character App Review Notes limit
+placeholder replaced; no ellipsis characters; no AI mentions; contact and legal URLs retained; product IDs retained
+
+=== STEP 3-5 INSPECT (read only first) ===
+versions_status 200
+VERSIONS:
+{
+  "id": "05537646-a75a-4269-9b7f-ae09d04a8dd5",
+  "versionString": "1.0",
+  "platform": "IOS",
+  "appStoreState": "REJECTED",
+  "appVersionState": "REJECTED",
+  "releaseType": "AFTER_APPROVAL",
+  "copyright": "2026 Samay Vashsht",
+  "createdDate": "2026-11-10T12:17:41-08:00",
+  "build": {
+    "type": "builds",
+    "id": "ddfd6d4a-720e-4c70-ad47-c159289853b7"
+  }
+}
+INCLUDED types: ['appStoreReviewDetails', 'builds']
+INC builds ddfd6d4a-720e-4c70-ad47-c159289853b7 {
+  "version": "5",
+  "uploadedDate": "2026-11-13T03:50:05-08:00",
+  "expirationDate": "2027-02-11T03:50:05-08:00",
+  "expired": false,
+  "minOsVersion": "16.4",
+  "lsMinimumSystemVersion": "12.0",
+  "computedMinMacOsVersion": "12.0",
+  "computedMinVisionOsVersion": "1.0",
+  "iconAssetToken": {
+    "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b1/20/d8/b120d8e9-5453-9eb5-7d25-513f715fc019/AppIcon60x60@2x.png/{w}x{h}bb.{f}",
+    "width": 120,
+    "height": 120
+  },
+  "processingState": "VALID",
+  "buildAudienceType": "APP_STORE_ELIGIBLE",
+  "usesNonExemptEncryption": false
+}
+INC appStoreReviewDetails 77c38027-f2be-4ef6-bb2b-714c3dbcbf6f {
+  "contactFirstName": "Samay",
+  "contactLastName": "Vashsht",
+  "contactPhone": "+91 9953710111",
+  "contactEmail": "samayhuf@gmail.com",
+  "demoAccountName": null,
+  "demoAccountPassword": null,
+  "demoAccountRequired": false,
+  "notes": "Scanwise is fully usable with no sign-in. The scanner, Safe-Link Shield, basic QR creation and recent history are free. Pro features (barcode generator, UPI QR, custom colours, unlimited history, batch QR and CSV export) are reached from the Pro gate or paywall: open Settings and tap Go Pro, or tap Barcode or Batch on the Create tab. Scanwise Pro is a StoreKit 2 auto-renewable subscription in the group Scanwise Pro, at $2.99 per month or $19.99 per year, each with a 7-day free trial for eligible new subscribers. Restore Purchases is on the paywall and in Settings."
+}
+
+BUILDS status 400
+{
+  "errors" : [ {
+    "id" : "9abaadd0-e44a-4afe-9556-89bd576f5ff9",
+    "status" : "400",
+    "code" : "PARAMETER_ERROR.ILLEGAL",
+    "title" : "A given parameter is not allowed for this request",
+    "detail" : "The parameter 'sort' can not be used with this request",
+    "source" : {
+      "parameter" : "sort"
+    }
+  } ]
+}
+
+REVIEW SUBMISSIONS status 200
+included types ['appStoreVersions', 'reviewSubmissionItems']
+SUBMISSION {
+  "id": "faa00109-b2fa-40a5-bed7-d2accfc56b0e",
+  "state": "UNRESOLVED_ISSUES",
+  "platform": "IOS",
+  "submittedDate": "2026-11-13T13:49:08.649Z",
+  "items": [
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx"
+    },
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg"
+    },
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ"
+    },
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ"
+    }
+  ]
+}
+ITEM ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx {
+  "attributes": {
+    "state": "REJECTED"
+  },
+  "relationships": {}
+}
+ITEM ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg {
+  "attributes": {
+    "state": "READY_FOR_REVIEW"
+  },
+  "relationships": {}
+}
+ITEM ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ {
+  "attributes": {
+    "state": "READY_FOR_REVIEW"
+  },
+  "relationships": {}
+}
+ITEM ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ {
+  "attributes": {
+    "state": "READY_FOR_REVIEW"
+  },
+  "relationships": {}
+}
+
+=== inspect done ===
+=== item details + price + subs ===
+
+GET submission include=items,appStoreVersionForReview,items.appStoreVersion,items.s... status 400
+{
+  "errors" : [ {
+    "id" : "4fa6ffb2-035f-410c-9e17-a00471eec973",
+    "status" : "400",
+    "code" : "PARAMETER_ERROR.INVALID",
+    "title" : "A parameter has an invalid value",
+    "detail" : "'items.appStoreVersion' is not a valid relationship name",
+    "source" : {
+      "parameter" : "include"
+    }
+  }, {
+    "id" : "4deb2309-ac62-4ed2-8473-1eaf3711c277",
+    "status" : "400",
+    "code" : "PARAMETER_ERROR.INVALID",
+    "title" : "A parameter has an invalid value",
+    "detail" : "'ite
+
+GET submission include=items... status 200
+sub attrs {
+  "platform": "IOS",
+  "submittedDate": "2026-11-13T13:49:08.649Z",
+  "state": "UNRESOLVED_ISSUES"
+}
+included [('reviewSubmissionItems', 'ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx', {'state': 'REJECTED'}), ('reviewSubmissionItems', 'ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg', {'state': 'READY_FOR_REVIEW'}), ('reviewSubmissionItems', 'ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ', {'state': 'READY_FOR_REVIEW'}), ('reviewSubmissionItems', 'ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ', {'state': 'READY_FOR_REVIEW'})]
+
+GET items status 400 include tried
+{
+  "errors" : [ {
+    "id" : "e6fad346-a1ad-4290-8b47-bbd0dcf6e19d",
+    "status" : "400",
+    "code" : "PARAMETER_ERROR.INVALID",
+    "title" : "A parameter has an invalid value",
+    "detail" : "'subscription' is not a valid relationship name",
+    "source" : {
+      "parameter" : "include"
+    }
+  }, {
+    "id" : "484c843d-56ae-4ac3-a321-852763f73aef",
+    "status" : "400",
+    "code" : "PARAMETER_ERROR.INVALID",
+    "title" : "A parameter has an invalid value",
+    "detail" : "'subscriptionGroup' is not a valid relationship name",
+    "source" : {
+      "parameter" : "include"
+    }
+  }, {
+    "id" : "d0e70ea8-4de7-4fbc-828b-cf1baa57d818",
+    "status" : "400",
+    "code" : "PARAMETER_ERROR.INVALID",
+    "title" : "A parameter has an invalid value",
+    "detail" : "'inAppPurchase' is 
+GET items bare 200
+{
+  "data": [
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx",
+      "attributes": {
+        "state": "REJECTED"
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx"
+      }
+    },
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg",
+      "attributes": {
+        "state": "READY_FOR_REVIEW"
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg"
+      }
+    },
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ",
+      "attributes": {
+        "state": "READY_FOR_REVIEW"
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ"
+      }
+    },
+    {
+      "type": "reviewSubmissionItems",
+      "id": "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ",
+      "attributes": {
+        "state": "READY_FOR_REVIEW"
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e/items"
+  },
+  "meta": {
+    "paging": {
+      "total": 4,
+      "limit": 50
+    }
+  }
+}
+
+GET rejected item 403
+{
+  "errors" : [ {
+    "id" : "c20a0803-a667-493d-97cf-635fb235eaec",
+    "status" : "403",
+    "code" : "FORBIDDEN_ERROR",
+    "title" : "The given operation is not allowed",
+    "detail" : "The resource 'reviewSubmissionItems' does not allow 'GET_INSTANCE'. Allowed operations are: CREATE, DELETE, UPDATE"
+  } ]
+}
+ZmFhMDAxMDktYjJmYS00 -> b'faa00109-b2fa-40a5-bed7-d2accfc56b0e|6|894996261'
+ZmFhMDAxMDktYjJmYS00 -> b'faa00109-b2fa-40a5-bed7-d2accfc56b0e|18|10401617-50f6-4bce-abb2-7cbe57b1dabf'
+ZmFhMDAxMDktYjJmYS00 -> b'faa00109-b2fa-40a5-bed7-d2accfc56b0e|18|886980a3-2988-47ab-9e1e-75266ee35d75'
+ZmFhMDAxMDktYjJmYS00 -> b'faa00109-b2fa-40a5-bed7-d2accfc56b0e|19|1190e161-f1df-44c4-921a-e08e5c769311'
+
+=== ASV reviewDetail 200 ===
+{
+  "data": {
+    "type": "appStoreReviewDetails",
+    "id": "77c38027-f2be-4ef6-bb2b-714c3dbcbf6f",
+    "attributes": {
+      "contactFirstName": "Samay",
+      "contactLastName": "Vashsht",
+      "contactPhone": "+91 9953710111",
+      "contactEmail": "samayhuf@gmail.com",
+      "demoAccountName": null,
+      "demoAccountPassword": null,
+      "demoAccountRequired": false,
+      "notes": "Scanwise is fully usable with no sign-in. The scanner, Safe-Link Shield, basic QR creation and recent history are free. Pro features (barcode generator, UPI QR, custom colours, unlimited history, batch QR and CSV export) are reached from the Pro gate or paywall: open Settings and tap Go Pro, or tap Barcode or Batch on the Create tab. Scanwise Pro is a StoreKit 2 auto-renewable subscription in the group Scanwise Pro, at $2.99 per month or $19.99 per year, each with a 7-day free trial for eligible new subscribers. Restore Purchases is on the paywall and in Settings."
+    },
+    "relationships": {
+      "appStoreReviewAttachments": {
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/appStoreReviewDetails/77c38027-f2be-4ef6-bb2b-714c3dbcbf6f/relationships/appStoreReviewAttachments",
+          "related": "https://api.appstoreconnect.apple.com/v1/appStoreReviewDetails/77c38027-f2be-4ef6-bb2b-714c3dbcbf6f/appStoreReviewAttachments"
+        }
+      }
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/appStoreReviewDetails/77c38027-f2be-4ef6-bb2b-714c3dbcbf6f"
+    }
+  },
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/05537646-a75a-4269-9b7f-ae09d04a8dd5/appStoreReviewDetail"
+  }
+}
+
+=== manualPrices 200 ===
+{
+  "data": [
+    {
+      "type": "appPrices",
+      "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+      "attributes": {
+        "manual": true,
+        "startDate": null,
+        "endDate": null
+      },
+      "relationships": {
+        "appPricePoint": {
+          "data": {
+            "type": "appPricePoints",
+            "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ"
+          }
+        },
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "USA"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "appPricePoints",
+      "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ",
+      "attributes": {
+        "customerPrice": "0.0",
+        "proceeds": "0.0"
+      },
+      "relationships": {
+        "equalizations": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ/relationships/equalizations",
+            "related": "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ/equalizations"
+          }
+        },
+        "territory": {}
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ"
+      }
+    },
+    {
+      "type": "territories",
+      "id": "USA",
+      "attributes": {
+        "currency": "USD"
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/territories/USA"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/manualPrices?include=appPricePoint%2Cterritory&limit=20"
+  },
+  "meta": {
+    "paging": {
+      "total": 1,
+      "limit": 20
+    }
+  }
+}
+
+=== baseTerritory 200 ===
+{
+  "data": {
+    "type": "territories",
+    "id": "USA",
+    "attributes": {
+      "currency": "USD"
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/territories/USA"
+    }
+  },
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/baseTerritory"
+  }
+}
+
+=== automaticPrices 200 ===
+{
+  "data": [
+    {
+      "type": "appPrices",
+      "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBRkciLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+      "attributes": {
+        "manual": false,
+        "startDate": null,
+        "endDate": null
+      },
+      "relationships": {
+        "appPricePoint": {
+          "data": {
+            "type": "appPricePoints",
+            "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBRkciLCJwIjoiMTAwMDAifQ"
+          }
+        },
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AFG"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBRkciLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+      }
+    },
+    {
+      "type": "appPrices",
+      "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBR08iLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+      "attributes": {
+        "manual": false,
+        "startDate": null,
+        "endDate": null
+      },
+      "relationships": {
+        "appPricePoint": {
+          "data": {
+            "type": "appPricePoints",
+            "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBR08iLCJwIjoiMTAwMDAifQ"
+          }
+        },
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AGO"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBR08iLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+      }
+    },
+    {
+      "type": "appPrices",
+      "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBSUEiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+      "attributes": {
+        "manual": false,
+        "startDate": null,
+        "endDate": null
+      },
+      "relationships": {
+        "appPricePoint": {
+          "data": {
+            "type": "appPricePoints",
+            "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBSUEiLCJwIjoiMTAwMDAifQ"
+          }
+        },
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AIA"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBSUEiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ"
+      }
+    },
+    {
+      "type": "appPrices",
+      "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBTEIiLCJwIjoiMTAwMDAiLCJzZCI6MC4wLCJlZCI6MC4wfQ",
+      "attributes": {
+        "manual": false,
+        "startDate": null,
+        "endDate": null
+      },
+      "relationships": {
+        "appPricePoint": {
+          "data": {
+            "type": "appPricePoints",
+            "id": "eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBTEIiLCJwIjoiMTAwMDAifQ"
+          }
+        },
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ALB"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v2/appPrices/eyJzIjoiNjgzMzEzNDgzMyIsInQiOiJBTEIiLCJwIjoiMTAwMDAiLCJzZCI6M
+...[9313 chars total]
+
+=== appPriceSchedule 200 ===
+{
+  "data": {
+    "type": "appPriceSchedules",
+    "id": "6833134833",
+    "relationships": {
+      "baseTerritory": {
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/relationships/baseTerritory",
+          "related": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/baseTerritory"
+        }
+      },
+      "manualPrices": {
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/relationships/manualPrices",
+          "related": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/manualPrices"
+        }
+      },
+      "automaticPrices": {
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/relationships/automaticPrices",
+          "related": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833/automaticPrices"
+        }
+      }
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6833134833"
+    }
+  },
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/apps/6833134833/appPriceSchedule"
+  }
+}
+
+=== subscriptionGroups 200 ===
+{
+  "data": [
+    {
+      "type": "subscriptionGroups",
+      "id": "22575651",
+      "attributes": {
+        "referenceName": "Scanwise Pro"
+      },
+      "relationships": {
+        "subscriptions": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/relationships/subscriptions",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/subscriptions"
+          }
+        },
+        "subscriptionGroupLocalizations": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/relationships/subscriptionGroupLocalizations",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/subscriptionGroupLocalizations"
+          }
+        },
+        "versions": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/relationships/versions",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/versions"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/apps/6833134833/subscriptionGroups?limit=20"
+  },
+  "meta": {
+    "paging": {
+      "total": 1,
+      "limit": 20
+    }
+  }
+}
+
+GROUP 22575651 {'referenceName': 'Scanwise Pro'}
+
+=== subs in 22575651 200 ===
+{
+  "data": [
+    {
+      "type": "subscriptions",
+      "id": "6834351860",
+      "attributes": {
+        "name": "Scanwise Pro Monthly",
+        "productId": "com.samayhuf.scanwise.pro.monthly",
+        "familySharable": false,
+        "state": "READY_TO_SUBMIT",
+        "subscriptionPeriod": "ONE_MONTH",
+        "reviewNote": "Scanwise is fully usable for free: scanning, Safe-Link Shield, QR creation and recent history need no purchase. Scanwise Pro (monthly or yearly, each with a 7-day free trial for new subscribers) unlocks the barcode generator, UPI QR codes, custom colours, batch QR codes, unlimited history and CSV export. To see the paywall, tap Settings > Go Pro, or tap Barcode or Batch on the Create tab. Restore purchases is on the paywall and in Settings. No account is required. Contact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.",
+        "groupLevel": 2,
+        "multiSeatStatus": "ENABLED",
+        "marketSettings": [
+          "APP_STORE",
+          "APPLE_BUSINESS",
+          "APPLE_SCHOOL"
+        ]
+      },
+      "relationships": {
+        "subscriptionLocalizations": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/relationships/subscriptionLocalizations",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/subscriptionLocalizations"
+          }
+        },
+        "appStoreReviewScreenshot": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/relationships/appStoreReviewScreenshot",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/appStoreReviewScreenshot"
+          }
+        },
+        "introductoryOffers": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/relationships/introductoryOffers",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/introductoryOffers"
+          }
+        },
+        "promotionalOffers": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/relationships/promotionalOffers",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/promotionalOffers"
+          }
+        },
+        "offerCodes": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/relationships/offerCodes",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/offerCodes"
+          }
+        },
+        "prices": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/relationships/prices",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/prices"
+          }
+        },
+        "pricePoints": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.c
+...[12204 chars total]
+
+=== group versions 22575651 200 ===
+{
+  "data": [
+    {
+      "type": "subscriptionGroupVersions",
+      "id": "1190e161-f1df-44c4-921a-e08e5c769311",
+      "attributes": {
+        "version": 1,
+        "state": "READY_FOR_REVIEW"
+      },
+      "relationships": {
+        "localizations": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupVersions/1190e161-f1df-44c4-921a-e08e5c769311/relationships/localizations",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupVersions/1190e161-f1df-44c4-921a-e08e5c769311/localizations"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupVersions/1190e161-f1df-44c4-921a-e08e5c769311"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroups/22575651/versions"
+  },
+  "meta": {
+    "paging": {
+      "total": 1,
+      "limit": 50
+    }
+  }
+}
+
+SUB 6834351860 product=com.samayhuf.scanwise.pro.monthly name=Scanwise Pro Monthly state=READY_TO_SUBMIT
+
+=== sub versions 6834351860 200 ===
+{
+  "data": [
+    {
+      "type": "subscriptionVersions",
+      "id": "10401617-50f6-4bce-abb2-7cbe57b1dabf",
+      "attributes": {
+        "version": 1,
+        "state": "READY_FOR_REVIEW"
+      },
+      "relationships": {
+        "image": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf/relationships/image",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf/image"
+          }
+        },
+        "images": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf/relationships/images",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf/images"
+          }
+        },
+        "localizations": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf/relationships/localizations",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf/localizations"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351860/versions"
+  },
+  "meta": {
+    "paging": {
+      "total": 1,
+      "limit": 50
+    }
+  }
+}
+
+SUB 6834351714 product=com.samayhuf.scanwise.pro.yearly name=Scanwise Pro Yearly state=READY_TO_SUBMIT
+
+=== sub versions 6834351714 200 ===
+{
+  "data": [
+    {
+      "type": "subscriptionVersions",
+      "id": "886980a3-2988-47ab-9e1e-75266ee35d75",
+      "attributes": {
+        "version": 1,
+        "state": "READY_FOR_REVIEW"
+      },
+      "relationships": {
+        "image": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75/relationships/image",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75/image"
+          }
+        },
+        "images": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75/relationships/images",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75/images"
+          }
+        },
+        "localizations": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75/relationships/localizations",
+            "related": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75/localizations"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6834351714/versions"
+  },
+  "meta": {
+    "paging": {
+      "total": 1,
+      "limit": 50
+    }
+  }
+}
+
+=== IAPs v1 200 ===
+{
+  "data": [],
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/apps/6833134833/inAppPurchasesV2?limit=50"
+  },
+  "meta": {
+    "paging": {
+      "total": 0,
+      "limit": 50
+    }
+  }
+}
+RESOLVE 10401617-50f6-4bce-abb2-7cbe57b1dabf via /v1/subscriptionVersions/10401617-50f6-4bce-abb2-7cbe57b1dabf -> 200
+  subscriptionVersions 10401617-50f6-4bce-abb2-7cbe57b1dabf {'version': 1, 'state': 'READY_FOR_REVIEW'}
+RESOLVE 886980a3-2988-47ab-9e1e-75266ee35d75 via /v1/subscriptionVersions/886980a3-2988-47ab-9e1e-75266ee35d75 -> 200
+  subscriptionVersions 886980a3-2988-47ab-9e1e-75266ee35d75 {'version': 1, 'state': 'READY_FOR_REVIEW'}
+RESOLVE 1190e161-f1df-44c4-921a-e08e5c769311 via /v1/subscriptionGroupVersions/1190e161-f1df-44c4-921a-e08e5c769311 -> 200
+  subscriptionGroupVersions 1190e161-f1df-44c4-921a-e08e5c769311 {'version': 1, 'state': 'READY_FOR_REVIEW'}
+
+=== price/subs inspect done ===
+
+=== 2026-11-14 09:25:03 Asia/Dhaka STEP 3: PATCH appStoreReviewDetail 77c38027-f2be-4ef6-bb2b-714c3dbcbf6f ===
+notes_chars=3998 notes_bytes=4018
+PATCH reviewDetail status 200
+GET reviewDetail status 200
+{
+  "contactFirstName": "Samay",
+  "contactLastName": "Vashsht",
+  "contactPhone": "+91 9953710111",
+  "contactEmail": "samayhuf@gmail.com",
+  "demoAccountName": null,
+  "demoAccountPassword": null,
+  "demoAccountRequired": false,
+  "notes_chars": 3998,
+  "notes_match_file": true,
+  "notes_has_link": true,
+  "notes_has_physical": true,
+  "notes_preview_first_180": "1. Screen recording\nScreen recording (recorded on a physical iPhone, starting at app launch): https://drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing\nThe",
+  "notes_preview_last_120": "ps://samayhuf-star.github.io/app-legal/scanwise/terms.html\n\nContact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.\n"
+}
+
+=== 2026-11-14 09:25:08 Asia/Dhaka STEP 4: build + releaseType + price readback ===
+GET ASV 200
+{
+  "versionId": "05537646-a75a-4269-9b7f-ae09d04a8dd5",
+  "versionString": "1.0",
+  "appStoreState": "REJECTED",
+  "appVersionState": "REJECTED",
+  "releaseType": "AFTER_APPROVAL",
+  "build_id": "ddfd6d4a-720e-4c70-ad47-c159289853b7",
+  "build_version": "5",
+  "build_processingState": "VALID",
+  "build_expired": false
+}
+APP PRICE (read only, no changes): [
+  {
+    "territory": "USA",
+    "customerPrice": "0.0",
+    "proceeds": "0.0",
+    "manual": true
+  }
+]
+price_is_free_usa True
+
+=== 2026-11-14 09:25:12 Asia/Dhaka STEP 7 check: Resolution Center API probes (GET only) ===
+  200 /v1/apps/6833134833/customerReviews :: {   "data" : [ ],   "links" : {     "self" : "https://api.appstoreconnect.apple.com/v1/apps/6833134833/customerReviews"   },   "meta" : {     "paging" : {       "total" : 0,       
+  404 /v1/apps/6833134833/appStoreReviewMessages :: {   "errors" : [ {     "id" : "3555c76f-4668-442e-9e10-40b9ed278c01",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/apps/6833134833/reviewMessages :: {   "errors" : [ {     "id" : "f10f5513-2b52-4412-89f9-8e283616a233",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e/messages :: {   "errors" : [ {     "id" : "af931811-8d40-458d-963c-54a410d07611",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e/reviewMessages :: {   "errors" : [ {     "id" : "0d35cf76-b1d3-4081-911a-8f7f3a40fd18",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/appStoreReviewDetails/77c38027-f2be-4ef6-bb2b-714c3dbcbf6f/customerReviews :: {   "errors" : [ {     "id" : "96b89c9e-2f7f-410e-ace7-a679f6fcb013",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/appStoreReviewDetails/77c38027-f2be-4ef6-bb2b-714c3dbcbf6f/messages :: {   "errors" : [ {     "id" : "642ce0d0-e270-4588-98b1-b375e8c6d687",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/resolutionCenterThreads :: {   "errors" : [ {     "id" : "1d0620d9-1e1a-418f-8c95-3cf9068b4cad",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/resolutionCenterMessages :: {   "errors" : [ {     "id" : "5f087dcc-1414-45a8-90ed-3f0691d40eae",     "status" : "404",     "code" : "PATH_ERROR",     "title" : "The URL path is not valid",     "detail" : "Th
+  404 /v1/appReviewMessages :: {   "errors" : [ {     "id" : "326bc66e-e7cf-45b3-b8a8-6a5e67e8c5e8",     "status" : "404",     "code" : "NOT_FOUND",     "title" : "The specified resource does not exist",     "de
+
+=== 2026-11-14 09:25:37 Asia/Dhaka STEP 5: PATCH reviewSubmission submitted=true (existing UNRESOLVED_ISSUES faa00109-b2fa-40a5-bed7-d2accfc56b0e) ===
+pre-submit recheck releaseType AFTER_APPROVAL build ddfd6d4a-720e-4c70-ad47-c159289853b7 state REJECTED
+PATCH submitted=true status 409
+{
+  "errors" : [ {
+    "id" : "d4ae498a-13c8-4f3a-8e2f-b59e1aec5d43",
+    "status" : "409",
+    "code" : "STATE_ERROR.ENTITY_STATE_INVALID",
+    "title" : "appStoreVersions with id '05537646-a75a-4269-9b7f-ae09d04a8dd5' is not in valid state.",
+    "detail" : "This resource cannot be reviewed, please check associated errors to see why.",
+    "meta" : {
+      "associatedErrors" : {
+        "/v1/appStoreVersions/05537646-a75a-4269-9b7f-ae09d04a8dd5" : [ {
+          "id" : "9da897c8-f8ba-432d-8dca-14b15f57f1b2",
+          "status" : "409",
+          "code" : "STATE_ERROR",
+          "title" : "The request cannot be fulfilled because of the state of another resource.",
+          "detail" : "Version is not ready to be submitted yet, please try again later."
+        } ]
+      }
+    }
+  } ]
+}
+SUBMIT_ERROR
+
+=== 2026-11-14 09:26:58 Asia/Dhaka RETRY inspect version + submission after 409 ===
+GET ASV 200
+attrs {
+  "platform": "IOS",
+  "versionString": "1.0",
+  "appStoreState": "REJECTED",
+  "appVersionState": "REJECTED",
+  "copyright": "2026 Samay Vashsht",
+  "reviewType": "APP_STORE",
+  "releaseType": "AFTER_APPROVAL",
+  "earliestReleaseDate": null,
+  "usesIdfa": null,
+  "downloadable": true,
+  "createdDate": "2026-11-10T12:17:41-08:00"
+}
+rels keys ['appStoreVersionLocalizations', 'build', 'appStoreVersionPhasedRelease', 'gameCenterAppVersion', 'routingAppCoverage', 'appStoreReviewDetail', 'appStoreVersionSubmission', 'appClipDefaultExperience', 'appStoreVersionExperiments', 'appStoreVersionExperimentsV2', 'customerReviews', 'alternativeDistributionPackage']
+  rel build: {'type': 'builds', 'id': 'ddfd6d4a-720e-4c70-ad47-c159289853b7'}
+  rel appStoreReviewDetail: {'type': 'appStoreReviewDetails', 'id': '77c38027-f2be-4ef6-bb2b-714c3dbcbf6f'}
+included: [('builds', 'ddfd6d4a-720e-4c70-ad47-c159289853b7', {'version': '5', 'processingState': 'VALID'}), ('appStoreReviewDetails', '77c38027-f2be-4ef6-bb2b-714c3dbcbf6f', {})]
+GET /v1/appStoreVersions/05537646-a75a-4269-9b7f-ae09d04a8dd5/build 200
+GET /v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e 200
+GET /v1/apps/6833134833 200
+ app attrs keys ['accessibilityUrl', 'bundleId', 'contentRightsDeclaration', 'isOrEverWasMadeForKids', 'name', 'primaryLocale', 'sku', 'streamlinedPurchasingEnabled', 'subscriptionStatusUrl', 'subscriptionStatusUrlForSandbox', 'subscriptionStatusUrlVersion', 'subscriptionStatusUrlVersionForSandbox']
+  {"name": "Scanwise: QR Code Scanner", "bundleId": "com.samayhuf.scanwise", "sku": "scanwise-ios-001", "primaryLocale": "en-US", "isOrEverWasMadeForKids": false, "subscriptionStatusUrl": null, "contentRightsDeclaration": "DOES_NOT_USE_THIRD_PARTY_CONTENT"}
+submission 200 {"submittedDate": "2026-11-13T13:49:08.649Z", "platform": "IOS", "state": "UNRESOLVED_ISSUES"}
+
+=== 2026-11-14 09:27:09 Asia/Dhaka RETRY PATCH submitted=true ===
+retry status 409
+{
+  "errors" : [ {
+    "id" : "848dc91d-09ed-4ed1-b054-3e319e03b2fe",
+    "status" : "409",
+    "code" : "STATE_ERROR.ENTITY_STATE_INVALID",
+    "title" : "appStoreVersions with id '05537646-a75a-4269-9b7f-ae09d04a8dd5' is not in valid state.",
+    "detail" : "This resource cannot be reviewed, please check associated errors to see why.",
+    "meta" : {
+      "associatedErrors" : {
+        "/v1/appStoreVersions/05537646-a75a-4269-9b7f-ae09d04a8dd5" : [ {
+          "id" : "dfd60874-0c22-464e-a5c7-7101047d0a33",
+          "status" : "409",
+          "code" : "STATE_ERROR",
+          "title" : "The request cannot be fulfilled because of the state of another resource.",
+          "detail" : "Version is not ready to be submitted yet, please try again later."
+        } ]
+      }
+    }
+  } ]
+}
+
+=== 2026-11-14 09:27:39 Asia/Dhaka STEP 5b: PATCH rejected reviewSubmissionItem resolved=true ===
+item ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx (decoded: submission|6|894996261 = appStoreVersion item)
+PATCH item resolved status 200
+{
+  "data" : {
+    "type" : "reviewSubmissionItems",
+    "id" : "ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx",
+    "attributes" : {
+      "state" : "READY_FOR_REVIEW"
+    },
+    "links" : {
+      "self" : "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx"
+    }
+  },
+  "links" : {
+    "self" : "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx"
+  }
+}
+items after resolve 200
+  ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx {'state': 'READY_FOR_REVIEW'}
+  ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg {'state': 'READY_FOR_REVIEW'}
+  ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ {'state': 'READY_FOR_REVIEW'}
+  ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ {'state': 'READY_FOR_REVIEW'}
+
+=== 2026-11-14 09:27:46 Asia/Dhaka pre-submit recheck build + releaseType ===
+{
+  "appVersionState": "READY_FOR_REVIEW",
+  "releaseType": "AFTER_APPROVAL",
+  "build_id": "ddfd6d4a-720e-4c70-ad47-c159289853b7",
+  "build_version": "5",
+  "processingState": "VALID"
+}
+
+=== 2026-11-14 09:27:48 Asia/Dhaka STEP 5c: PATCH reviewSubmission submitted=true ===
+PATCH submitted=true status 200
+{
+  "data" : {
+    "type" : "reviewSubmissions",
+    "id" : "faa00109-b2fa-40a5-bed7-d2accfc56b0e",
+    "attributes" : {
+      "platform" : "IOS",
+      "submittedDate" : "2026-11-14T03:27:52.835Z",
+      "state" : "WAITING_FOR_REVIEW"
+    },
+    "relationships" : {
+      "items" : {
+        "links" : {
+          "self" : "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e/relationships/items",
+          "related" : "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e/items"
+        }
+      }
+    },
+    "links" : {
+      "self" : "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e"
+    }
+  },
+  "links" : {
+    "self" : "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/faa00109-b2fa-40a5-bed7-d2accfc56b0e"
+  }
+}
+
+=== 2026-11-14 09:27:54 Asia/Dhaka STEP 6: readback ===
+GET one 200
+attrs {
+  "submittedDate": "2026-11-14T03:27:52.835Z",
+  "platform": "IOS",
+  "state": "WAITING_FOR_REVIEW"
+}
+asv_for_review {
+  "data": {
+    "type": "appStoreVersions",
+    "id": "05537646-a75a-4269-9b7f-ae09d04a8dd5"
+  }
+}
+included:
+  appStoreVersions 05537646-a75a-4269-9b7f-ae09d04a8dd5 {'copyright': '2026 Samay Vashsht', 'downloadable': True, 'earliestReleaseDate': None, 'createdDate': '2026-11-10T12:17:41-08:00', 'usesIdfa': None, 'versionString': '1.0', 'releaseType': 'AFTER_APPROVAL', 'appStoreState': 'WAITING_FOR_REVIEW', 'reviewType': 'APP_STORE', 'platform': 'IOS', 'appVersionState': 'WAITING_FOR_REVIEW'}
+  reviewSubmissionItems ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDZ8ODk0OTk2MjYx {'state': 'READY_FOR_REVIEW'}
+  reviewSubmissionItems ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDEwNDAxNjE3LTUwZjYtNGJjZS1hYmIyLTdjYmU1N2IxZGFiZg {'state': 'READY_FOR_REVIEW'}
+  reviewSubmissionItems ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE4fDg4Njk4MGEzLTI5ODgtNDdhYi05ZTFlLTc1MjY2ZWUzNWQ3NQ {'state': 'READY_FOR_REVIEW'}
+  reviewSubmissionItems ZmFhMDAxMDktYjJmYS00MGE1LWJlZDctZDJhY2NmYzU2YjBlfDE5fDExOTBlMTYxLWYxZGYtNDRjNC05MjFhLWUwOGU1Yzc2OTMxMQ {'state': 'READY_FOR_REVIEW'}
+list status 200
+SUBMISSION faa00109-b2fa-40a5-bed7-d2accfc56b0e {'submittedDate': '2026-11-14T03:27:52.835Z', 'platform': 'IOS', 'state': 'WAITING_FOR_REVIEW'}
+version after submit 1.0 WAITING_FOR_REVIEW releaseType AFTER_APPROVAL
+
+=== 2026-11-14 09:28:03 Asia/Dhaka submit path complete ===
+
+=== 2026-11-14 09:28:18 Asia/Dhaka STEP 7: Resolution Center reply text written ===
+path /home/box/shared/app-monitor/reports/scanwise-resolution-reply-2026-11-14.txt
+chars 1465 bytes 1465
+API does not expose Resolution Center / App Review message threads (probed endpoints 404, except /v1/apps/{id}/customerReviews which is public App Store reviews and is empty). Reply was not posted. Text is ready for the ASC website.
+
+========== FINAL SUMMARY 2026-11-14 08:58:18 IST ==========
+Link check: PUBLIC. curl HTTP 200, no login redirect, title ScreenRecording_11-14-2026 08-43-59_1.mp4 visible. Drive permissions anyoneWithLink (role writer, unchanged). size=12582912 bytes (12.0 MiB). created 2026-11-14T03:18:19.543Z = 09:18 AM Asia/Dhaka.
+Notes: 3998 characters, saved to /home/box/shared/app-monitor/reports/review-notes/scanwise-final-2026-11-14.txt and PATCHed to appStoreReviewDetail 77c38027-f2be-4ef6-bb2b-714c3dbcbf6f. Readback matches. Contact Samay Vashsht, +91 9953710111, samayhuf@gmail.com, demoAccountRequired=false.
+Build: 5 (ddfd6d4a-720e-4c70-ad47-c159289853b7) VALID, attached to version 1.0 (05537646-a75a-4269-9b7f-ae09d04a8dd5). releaseType AFTER_APPROVAL (automatic release). App price USA customerPrice 0.0 (Free). No pricing changes.
+Resubmit: existing UNRESOLVED_ISSUES submission faa00109-b2fa-40a5-bed7-d2accfc56b0e. First PATCH submitted=true returned 409 STATE_ERROR 'Version is not ready to be submitted yet' because the appStoreVersion item was still REJECTED. PATCH reviewSubmissionItems resolved=true moved that item to READY_FOR_REVIEW. Second PATCH submitted=true returned 200. State WAITING_FOR_REVIEW. submittedDate 2026-11-14T03:27:52.835Z = 09:27:52 AM Asia/Dhaka.
+Items (all READY_FOR_REVIEW): appStoreVersion 1.0; monthly subscriptionVersion 10401617-50f6-4bce-abb2-7cbe57b1dabf (6834351860); yearly subscriptionVersion 886980a3-2988-47ab-9e1e-75266ee35d75 (6834351714); subscriptionGroupVersion 1190e161-f1df-44c4-921a-e08e5c769311 (group 22575651 Scanwise Pro). No non-consumable IAPs.
+Resolution Center reply text: /home/box/shared/app-monitor/reports/scanwise-resolution-reply-2026-11-14.txt (API cannot post it).
+No secrets printed. No pricing changes. No App Privacy or other metadata changes.

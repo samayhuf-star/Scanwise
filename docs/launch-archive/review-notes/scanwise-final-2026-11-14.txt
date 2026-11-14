@@ -1,0 +1,38 @@
+1. Screen recording
+Screen recording (recorded on a physical iPhone, starting at app launch): https://drive.google.com/file/d/1rK-E787d6BJDu8PFn0r3Ow2JkbvXIJKd/view?usp=sharing
+The recording shows launch on the Scan tab with no paywall; scanning a QR from a photo with a Safe-Link Shield result; a Danger verdict on a risky link; creating a free QR; the paywall from Settings > Go Pro with both prices and the 7-day trial; a sandbox monthly purchase that unlocks Scanwise Pro; and Restore purchases. There is no account, login or user-generated content.
+
+2. Purpose and target audience
+Scanwise is a QR and barcode scanner and generator for everyday iPhone users. It reads a code, shows what it contains, and checks a link on the device before the user opens it. It is a general consumer app. The app is free to download (US $0.00).
+
+3. Setup and how to reach the main and paid features
+No account, login, demo credentials or sample files are needed. The app opens on the Scan tab; it is not a hard paywall.
+
+• Scan: point the camera at a QR or barcode, or choose a photo. Types include QR, EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, Codabar, PDF417, Aztec and Data Matrix.
+• Result: Safe-Link Shield gives a Safe, Caution or Danger verdict with reasons, computed on the device. The user can copy, share or open a link. Danger links ask for confirmation first. HTTP(S) links open in an in-app browser.
+• Create (free): QR codes for links, text, Wi-Fi, contacts, email, phone and SMS, shared or copied as an image.
+• History: the newest 20 entries plus starred items, stored only on this device.
+• Settings: plan status, Go Pro, Restore purchases, haptic and history toggles, Terms and Privacy.
+
+Paid features (Scanwise Pro) open only when a Pro control or Go Pro is tapped. The paywall can be closed, so free tools stay available.
+• Open Settings > Go Pro, or tap Barcode or Batch on the Create tab.
+• Pro unlocks: barcode generator (Code 128, EAN-13, EAN-8, UPC-A, Code 39, ITF-14); UPI payment QR codes; custom colours; unlimited history; batch QR (up to 30); history CSV export.
+• Restore Purchases is on the paywall and in Settings.
+
+Subscriptions, group "Scanwise Pro", sold through Apple In-App Purchase (StoreKit 2), submitted with this version:
+• com.samayhuf.scanwise.pro.monthly (6834351860) - US $2.99/month, 7-day free trial for new subscribers
+• com.samayhuf.scanwise.pro.yearly (6834351714) - US $19.99/year, 7-day free trial for new subscribers
+There is no lifetime product. After a trial, the subscription renews unless cancelled at least 24 hours before the trial ends.
+
+4. External services
+Payments use Apple In-App Purchase (StoreKit 2 via expo-iap). There is no other payment processor and no account service. Safe-Link Shield does not call a network reputation API; it is an on-device heuristic. Opening a link uses the system in-app browser, or the system handler for tel, mailto, sms and maps. Optional "Look up product" and "Search web" actions open a Google search URL in the browser. Camera and the photo library are used only to read codes. History and settings stay on the device. There are no analytics SDKs, and we do not operate a server that receives scan data.
+
+5. Regional differences
+Features and content are the same in every region. The download price is Free. Subscription prices follow the App Store. UPI QR creation is a Pro tool for payment details the user types; it is not geo-locked, though UPI is typically used in India.
+
+6. Regulated or third-party material
+None. Scanwise is not a medical, financial or other regulated-industry service and does not process payments or verify identity. Safe-Link Shield looks for common warning signs and cannot guarantee that a link is safe. No licensed third-party material.
+Privacy Policy: https://samayhuf-star.github.io/app-legal/scanwise/privacy.html
+Terms of Use: https://samayhuf-star.github.io/app-legal/scanwise/terms.html
+
+Contact: Samay Vashsht, +91 9953710111, samayhuf@gmail.com.
