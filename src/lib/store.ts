@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSyncExternalStore } from 'react';
+import { isPro } from './purchases';
 import type { ContentKind, Verdict } from './shield';
 
 /** Tiny persisted store: sync reads for the UI, async writes to disk. */
@@ -40,12 +41,15 @@ function createStore<T>(key: string, initial: T) {
 
 /* ---------- settings ---------- */
 
-export type Settings = { haptics: boolean; saveHistory: boolean; beep: boolean };
+export type Settings = { haptics: boolean; saveHistory: boolean; beep: boolean; onboarded: boolean };
 const settingsStore = createStore<Settings>('scanwise.settings.v1', {
   haptics: true,
   saveHistory: true,
   beep: false,
+  onboarded: false,
 });
+export const settingsReady = () => settingsStore.ready();
+export const settingsLoaded = () => settingsStore.isLoaded();
 
 export const getSettings = () => settingsStore.get();
 export const setSettings = (patch: Partial<Settings>) => settingsStore.set({ ...settingsStore.get(), ...patch });
@@ -68,6 +72,7 @@ export type HistoryItem = {
 
 const historyStore = createStore<HistoryItem[]>('scanwise.history.v1', []);
 const MAX_ITEMS = 500;
+export const FREE_HISTORY_LIMIT = 25;
 
 export const useHistory = () =>
   useSyncExternalStore(historyStore.subscribe, historyStore.get, historyStore.get);
@@ -79,7 +84,7 @@ export function addHistory(item: Omit<HistoryItem, 'id' | 'ts'>): HistoryItem | 
   const dupe = list.find((h) => h.raw === item.raw && h.source === item.source && now - h.ts < 5000);
   if (dupe) return dupe;
   const full: HistoryItem = { ...item, id: `${now}-${Math.random().toString(36).slice(2, 7)}`, ts: now };
-  historyStore.set([full, ...list].slice(0, MAX_ITEMS));
+  historyStore.set([full, ...list].slice(0, isPro() ? MAX_ITEMS : FREE_HISTORY_LIMIT));
   return full;
 }
 

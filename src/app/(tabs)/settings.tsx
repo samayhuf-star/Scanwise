@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import { Alert, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, SectionTitle } from '@/components/ui';
+import { manageSubscription, restore, showPaywall, useIsPro } from '@/lib/purchases';
 import { clearHistory, setSettings, useHistory, useSettings } from '@/lib/store';
 import { colors } from '@/lib/theme';
 
@@ -27,6 +28,7 @@ export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const settings = useSettings();
   const history = useHistory();
+  const pro = useIsPro();
 
   return (
     <ScrollView
@@ -40,8 +42,21 @@ export default function SettingsScreen() {
           <Text style={[s.label, { fontSize: 17 }]}>Private by design</Text>
         </View>
         <Text style={s.hint}>
-          Links are checked on your phone. There is no account, no ads and no tracking. Codes you create are static and never expire.
+          Links are checked on your phone. There is no account and no ads, and nothing you scan leaves your phone. Purchases are handled by Apple and RevenueCat. Codes you create are static and never expire.
         </Text>
+      </Card>
+
+      <SectionTitle>Scanwise Pro</SectionTitle>
+      <Card style={{ gap: 10, marginBottom: 16 }}>
+        <Text style={s.hint}>
+          {pro ? 'Scanwise Pro is active. Thank you!' : 'Unlock every barcode format and unlimited history. Free for 7 days, cancel anytime.'}
+        </Text>
+        {pro ? (
+          <Button label="Manage subscription" onPress={manageSubscription} />
+        ) : (
+          <Button primary label="Try Pro free" onPress={showPaywall} />
+        )}
+        <Button label="Restore purchases" onPress={restore} />
       </Card>
 
       <SectionTitle>Scanning</SectionTitle>

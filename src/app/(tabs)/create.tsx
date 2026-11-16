@@ -3,6 +3,7 @@ import * as Sharing from 'expo-sharing';
 import { useMemo, useRef, useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { showPaywall, useIsPro } from '@/lib/purchases';
 import { captureRef } from 'react-native-view-shot';
 import { BarcodeView, QrView } from '@/components/CodeViews';
 import { Button, Card, Chip, SectionTitle } from '@/components/ui';
@@ -61,6 +62,7 @@ export default function CreateScreen() {
   const [mode, setMode] = useState<'qr' | 'bar'>('qr');
   const [type, setType] = useState<QrType>('url');
   const [fields, setFields] = useState<Fields>({ security: 'WPA' });
+  const pro = useIsPro();
   const [format, setFormat] = useState<BarFormat>('CODE128');
   const [barText, setBarText] = useState('');
   const [fg, setFg] = useState(SWATCHES[0]);
@@ -158,7 +160,15 @@ export default function CreateScreen() {
           <>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingBottom: 14 }}>
               {BAR_FORMATS.map((b) => (
-                <Chip key={b.id} label={b.label} active={format === b.id} onPress={() => setFormat(b.id)} />
+                <Chip
+                  key={b.id}
+                  label={b.id === 'CODE128' || pro ? b.label : `${b.label} · Pro`}
+                  active={format === b.id}
+                  onPress={() => {
+                    if (b.id === 'CODE128' || pro) setFormat(b.id);
+                    else showPaywall();
+                  }}
+                />
               ))}
             </ScrollView>
             <Card style={{ gap: 6 }}>
