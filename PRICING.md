@@ -1,3 +1,19 @@
+# Pricing (decision of 17 Nov 2026)
+
+One plan for the app: **weekly subscription, $1.99 per week, 7-day free trial** (new subscribers).
+Applies to every app except Klenzer. Monthly, yearly and lifetime plans are retired from the paywall.
+
+## Store and RevenueCat setup to match
+- App Store Connect: auto-renewing subscription `scanwise_pro_weekly`, duration 1 week, price $1.99 (US tier), introductory offer = free trial, 1 week, all territories.
+- Google Play (where the app ships there): matching base plan, weekly, $1.99, free-trial offer of 7 days. The app is a free download with the subscription inside it (Play does not allow a trial on an upfront-paid app).
+- RevenueCat: entitlement `premium` attached to the weekly product; `default` offering has one WEEKLY package; paywall copy reads "7 days free, then $1.99/week".
+- Remove old monthly / yearly / lifetime packages from the offering. Do not delete the old products if anyone already bought them; they stay recognised.
+
+Supersedes the 16 Nov decision in the old table below ($2.99 / $19.99 and no weekly plan). The 50/50 offering experiment is cancelled: one plan only.
+
+
+---
+## Earlier notes (superseded)
 # Scanwise pricing decision
 
 Checked 2026-11-16 against US App Store listings (in-app purchase lists). Prices change, so re-check before changing ours.
