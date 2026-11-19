@@ -18,9 +18,9 @@ export default function TabLayout() {
         tabBarStyle: { backgroundColor: colors.card, borderTopColor: colors.border },
         sceneStyle: { backgroundColor: colors.bg },
       }}>
-      <Tabs.Screen name="index" options={{ title: 'Scan', tabBarIcon: icon('scan') }} />
-      <Tabs.Screen name="create" options={{ title: 'Create', tabBarIcon: icon('qr-code') }} />
-      <Tabs.Screen name="history" options={{ title: 'History', tabBarIcon: icon('time') }} />
+      <Tabs.Screen name="index" options={{ title: 'Desk', tabBarIcon: icon('scan') }} />
+      <Tabs.Screen name="members" options={{ title: 'Members', tabBarIcon: icon('people') }} />
+      <Tabs.Screen name="log" options={{ title: 'Log', tabBarIcon: icon('calendar') }} />
       <Tabs.Screen name="settings" options={{ title: 'Settings', tabBarIcon: icon('settings') }} />
     </Tabs>
   );

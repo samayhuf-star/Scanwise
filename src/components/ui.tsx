@@ -27,7 +27,7 @@ export function Button({
   style?: ViewStyle;
 }) {
   const bg = primary ? colors.accent : danger ? 'transparent' : colors.cardAlt;
-  const fg = primary ? '#04251D' : danger ? colors.danger : colors.text;
+  const fg = primary ? colors.onAccent : danger ? colors.danger : colors.text;
   return (
     <Pressable
       accessibilityRole="button"

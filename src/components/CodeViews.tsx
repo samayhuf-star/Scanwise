@@ -1,8 +1,7 @@
 import QRCode from 'qrcode';
 import { forwardRef, useMemo } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { encodeBarcode, type BarFormat } from '@/lib/generate';
 
 type QrProps = { value: string; size?: number; fg?: string; bg?: string; ecc?: 'L' | 'M' | 'Q' | 'H' };
 
@@ -45,36 +44,3 @@ export const QrView = forwardRef<any, QrProps>(function QrView(
   );
 });
 
-type BarProps = { value: string; format: BarFormat; width?: number; height?: number };
-
-export const BarcodeView = forwardRef<any, BarProps>(function BarcodeView(
-  { value, format, width = 300, height = 120 },
-  ref,
-) {
-  const enc = useMemo(() => encodeBarcode(value, format), [value, format]);
-  if (!enc.ok) return null;
-  const quiet = 10;
-  const total = enc.bits.length + quiet * 2;
-  let d = '';
-  let i = 0;
-  while (i < enc.bits.length) {
-    if (enc.bits[i] === '1') {
-      let run = 1;
-      while (i + run < enc.bits.length && enc.bits[i + run] === '1') run++;
-      d += `M${i + quiet} 0h${run}v${height - 22}h-${run}z`;
-      i += run;
-    } else i++;
-  }
-  return (
-    <View
-      ref={ref}
-      collapsable={false}
-      style={{ width, backgroundColor: '#fff', alignItems: 'center', paddingBottom: 6 }}>
-      <Svg width={width} height={height - 22} viewBox={`0 0 ${total} ${height - 22}`} preserveAspectRatio="none">
-        <Rect x={0} y={0} width={total} height={height - 22} fill="#fff" />
-        <Path d={d} fill="#000" />
-      </Svg>
-      <Text style={{ color: '#000', fontSize: 14, letterSpacing: 2, marginTop: 4 }}>{enc.label}</Text>
-    </View>
-  );
-});

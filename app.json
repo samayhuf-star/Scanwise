@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Scanwise",
+    "name": "PassDesk",
     "slug": "scanwise",
-    "scheme": "scanwise",
+    "scheme": "passdesk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "backgroundColor": "#0B1220",
+    "backgroundColor": "#0D0F14",
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.samayhuf.scanwise",
@@ -19,7 +19,7 @@
     "android": {
       "package": "com.samayhuf.scanwise",
       "adaptiveIcon": {
-        "backgroundColor": "#0B1220",
+        "backgroundColor": "#0D0F14",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -34,21 +34,15 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Scanwise uses the camera only to read QR codes and barcodes. Nothing is uploaded.",
+          "cameraPermission": "PassDesk uses the camera only to read member pass QR codes at your front desk. Nothing is uploaded.",
           "microphonePermission": false,
           "recordAudioAndroid": false
         }
       ],
       [
-        "expo-image-picker",
-        {
-          "photosPermission": "Scanwise reads QR codes and barcodes from photos you choose. Nothing is uploaded."
-        }
-      ],
-      [
         "expo-splash-screen",
         {
-          "backgroundColor": "#0B1220",
+          "backgroundColor": "#0D0F14",
           "image": "./assets/splash-icon.png",
           "imageWidth": 200
         }

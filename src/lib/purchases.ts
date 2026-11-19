@@ -68,7 +68,7 @@ export async function restore() {
   try {
     const info = await Purchases.restorePurchases();
     apply(info);
-    Alert.alert(pro ? 'Purchases restored' : 'Nothing to restore', pro ? 'Scanwise Pro is active.' : 'No active subscription was found for this Apple ID.');
+    Alert.alert(pro ? 'Purchases restored' : 'Nothing to restore', pro ? 'PassDesk Pro is active.' : 'No active subscription was found for this Apple ID.');
   } catch {
     Alert.alert('Restore failed', 'Please check your connection and try again.');
   }

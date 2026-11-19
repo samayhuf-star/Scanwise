@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
-import { Alert, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { manageSubscription, restore, showPaywall, useIsPro } from '@/lib/purchases';
-import { clearHistory, setSettings, useHistory, useSettings } from '@/lib/store';
+import { clearCheckIns, setSettings, useCheckIns, useSettings } from '@/lib/store';
 import { colors } from '@/lib/theme';
 
 function Row({ label, hint, value, onChange }: { label: string; hint?: string; value: boolean; onChange: (v: boolean) => void }) {
@@ -27,7 +27,7 @@ function Row({ label, hint, value, onChange }: { label: string; hint?: string; v
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const settings = useSettings();
-  const history = useHistory();
+  const history = useCheckIns();
   const pro = useIsPro();
 
   return (
@@ -38,18 +38,31 @@ export default function SettingsScreen() {
 
       <Card style={{ gap: 6, marginBottom: 16, borderColor: colors.accent }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-          <Ionicons name="shield-checkmark" size={26} color={colors.accent} />
+          <Ionicons name="lock-closed" size={26} color={colors.accent} />
           <Text style={[s.label, { fontSize: 17 }]}>Private by design</Text>
         </View>
         <Text style={s.hint}>
-          Links are checked on your phone. There is no account and no ads, and nothing you scan leaves your phone. Purchases are handled by Apple and RevenueCat. Codes you create are static and never expire.
+          There is no account and no ads. Members, passes and check-ins are stored only on this phone and are never uploaded. Purchases are handled by Apple and RevenueCat.
         </Text>
       </Card>
 
-      <SectionTitle>Scanwise Pro</SectionTitle>
+      <SectionTitle>Your venue</SectionTitle>
+      <Card style={{ gap: 8, marginBottom: 16 }}>
+        <Text style={s.hint}>Shown on every member pass and at the top of the Desk.</Text>
+        <TextInput
+          value={settings.venueName}
+          onChangeText={(v) => setSettings({ venueName: v })}
+          placeholder="Gym or venue name"
+          placeholderTextColor={colors.muted}
+          accessibilityLabel="Venue name"
+          style={s.input}
+        />
+      </Card>
+
+      <SectionTitle>PassDesk Pro</SectionTitle>
       <Card style={{ gap: 10, marginBottom: 16 }}>
         <Text style={s.hint}>
-          {pro ? 'Scanwise Pro is active. Thank you!' : 'Unlock every barcode format and unlimited history. Free for 7 days, cancel anytime.'}
+          {pro ? 'PassDesk Pro is active. Thank you!' : 'Unlock unlimited members and CSV export. Free for 7 days, cancel anytime.'}
         </Text>
         {pro ? (
           <Button label="Manage subscription" onPress={manageSubscription} />
@@ -59,37 +72,31 @@ export default function SettingsScreen() {
         <Button label="Restore purchases" onPress={restore} />
       </Card>
 
-      <SectionTitle>Scanning</SectionTitle>
+      <SectionTitle>General</SectionTitle>
       <Card style={{ gap: 14 }}>
         <Row label="Haptic feedback" value={settings.haptics} onChange={(v) => setSettings({ haptics: v })} />
-        <Row
-          label="Save scans to history"
-          hint="Stored only on this device."
-          value={settings.saveHistory}
-          onChange={(v) => setSettings({ saveHistory: v })}
-        />
       </Card>
 
       <SectionTitle>Data</SectionTitle>
       <Card style={{ gap: 10 }}>
-        <Text style={s.hint}>{history.length} saved {history.length === 1 ? 'entry' : 'entries'} on this device.</Text>
+        <Text style={s.hint}>{history.length} check-in{history.length === 1 ? '' : 's'} saved on this device.</Text>
         <Button
           danger
-          label="Clear history (keep starred)"
+          label="Clear check-in log"
           icon="trash-outline"
           disabled={!history.length}
           onPress={() =>
-            Alert.alert('Clear history?', 'Starred items are kept.', [
+            Alert.alert('Clear the check-in log?', 'Members and passes are kept.', [
               { text: 'Cancel', style: 'cancel' },
-              { text: 'Clear', style: 'destructive', onPress: () => clearHistory(true) },
+              { text: 'Clear', style: 'destructive', onPress: () => clearCheckIns() },
             ])
           }
         />
       </Card>
 
       <Text style={s.foot}>
-        Scanwise {Constants.expoConfig?.version ?? ''}
-        {'\n'}Link checks are heuristics that look for common warning signs. They reduce risk but can not guarantee a link is safe.
+        PassDesk {Constants.expoConfig?.version ?? ''}
+        {'\n'}Passes are checked offline on this device. Keep a backup of your member list if you change phones.
       </Text>
     </ScrollView>
   );
@@ -100,5 +107,6 @@ const s = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   label: { color: colors.text, fontSize: 16, fontWeight: '600' },
   hint: { color: colors.muted, fontSize: 13.5, lineHeight: 19, marginTop: 2 },
+  input: { color: colors.text, backgroundColor: colors.cardAlt, borderRadius: 12, borderWidth: 1, borderColor: colors.border, padding: 14, fontSize: 16 },
   foot: { color: colors.muted, fontSize: 12, textAlign: 'center', marginTop: 24, lineHeight: 18 },
 });

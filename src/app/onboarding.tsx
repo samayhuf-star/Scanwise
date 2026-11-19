@@ -13,31 +13,30 @@ type IconName = ComponentProps<typeof Ionicons>['name'];
 
 const PAGES: { icon: IconName; color: string; title: string; body: string }[] = [
   {
-    icon: 'scan',
+    icon: 'id-card',
     color: colors.accent,
-    title: 'Scan anything, instantly',
-    body: 'QR codes and every common barcode, from the camera or a photo. Point, and it just works, even in low light with the torch.',
+    title: 'A pass for every member',
+    body: 'Add a member, pick their plan, and PassDesk makes a QR pass you can send to their phone in one tap. No app for members to install.',
   },
   {
-    icon: 'shield-checkmark',
+    icon: 'scan',
     color: colors.safe,
-    title: 'Know a link is safe first',
-    body: 'Scanwise checks every link on your phone before you open it and flags look-alike sites, shorteners and risky downloads. Nothing is uploaded.',
+    title: 'Check people in at the door',
+    body: 'Point your phone at a member pass. Green means welcome in, amber means the pass has expired. It works offline.',
   },
   {
-    icon: 'qr-code',
+    icon: 'calendar',
     color: colors.info,
-    title: 'Make codes that never expire',
-    body: 'Create QR codes for links, Wi-Fi, contacts and payments, or barcodes for products. Static codes, no ads, no watermark, no account.',
+    title: 'See who showed up',
+    body: 'Every check-in is logged with the time. Track today and this week, and export the log to a spreadsheet. Everything stays on your phone.',
   },
 ];
 
 const PRO_ROWS: { icon: IconName; text: string; pro?: boolean }[] = [
-  { icon: 'scan', text: 'Unlimited scanning, always free' },
-  { icon: 'shield-checkmark', text: 'Safe-Link Shield on every link, always free' },
-  { icon: 'qr-code', text: 'Create all QR types, always free' },
-  { icon: 'barcode', text: 'All barcode formats: EAN, UPC, Code 39, ITF-14', pro: true },
-  { icon: 'time', text: 'Unlimited scan history (free keeps the latest 25)', pro: true },
+  { icon: 'scan', text: 'Unlimited check-ins at the door, always free' },
+  { icon: 'id-card', text: 'Up to 10 members, always free' },
+  { icon: 'people', text: 'Unlimited members', pro: true },
+  { icon: 'download-outline', text: 'Export the check-in log to CSV', pro: true },
 ];
 
 export default function Onboarding() {

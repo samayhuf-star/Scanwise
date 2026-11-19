@@ -1,23 +1,17 @@
 export const colors = {
-  bg: '#0B1220',
-  card: '#121B2E',
-  cardAlt: '#18233B',
-  border: '#24314D',
-  text: '#F1F5F9',
-  muted: '#8B9BB8',
-  accent: '#22D3A6',
-  accentDark: '#0B3D33',
+  bg: '#0D0F14',
+  card: '#161A22',
+  cardAlt: '#1E232E',
+  border: '#2A3140',
+  text: '#F4F5F7',
+  muted: '#8E97A8',
+  accent: '#FF7A3D',
+  accentDark: '#3A1B0D',
+  onAccent: '#2A1004',
   safe: '#22C55E',
   caution: '#F59E0B',
   danger: '#F43F5E',
   info: '#60A5FA',
 };
-
-export const verdictColor = {
-  safe: colors.safe,
-  caution: colors.caution,
-  danger: colors.danger,
-  info: colors.info,
-} as const;
 
 export const radius = { sm: 10, md: 16, lg: 24 };

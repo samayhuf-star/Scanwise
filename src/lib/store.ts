@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSyncExternalStore } from 'react';
+import { expiryFor, type PassStatus, type PlanId } from './pass';
 import { isPro } from './purchases';
-import type { ContentKind, Verdict } from './shield';
 
-/** Tiny persisted store: sync reads for the UI, async writes to disk. */
+/** Tiny persisted store: sync reads for the UI, async writes to disk. Everything stays on this device. */
 function createStore<T>(key: string, initial: T) {
   let state = initial;
   let loaded = false;
@@ -12,8 +12,9 @@ function createStore<T>(key: string, initial: T) {
 
   const load = AsyncStorage.getItem(key)
     .then((v) => {
-      if (v) state = { ...(typeof initial === 'object' && !Array.isArray(initial) ? initial : {}), ...JSON.parse(v) } as T;
-      if (v && Array.isArray(initial)) state = JSON.parse(v) as T;
+      if (!v) return;
+      const parsed = JSON.parse(v);
+      state = Array.isArray(initial) ? (parsed as T) : ({ ...initial, ...parsed } as T);
     })
     .catch(() => {})
     .finally(() => {
@@ -39,63 +40,73 @@ function createStore<T>(key: string, initial: T) {
   };
 }
 
+const uid = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+
 /* ---------- settings ---------- */
 
-export type Settings = { haptics: boolean; saveHistory: boolean; beep: boolean; onboarded: boolean };
-const settingsStore = createStore<Settings>('scanwise.settings.v1', {
+export type Settings = { haptics: boolean; onboarded: boolean; venueName: string };
+const settingsStore = createStore<Settings>('passdesk.settings.v1', {
   haptics: true,
-  saveHistory: true,
-  beep: false,
   onboarded: false,
+  venueName: '',
 });
 export const settingsReady = () => settingsStore.ready();
 export const settingsLoaded = () => settingsStore.isLoaded();
-
 export const getSettings = () => settingsStore.get();
 export const setSettings = (patch: Partial<Settings>) => settingsStore.set({ ...settingsStore.get(), ...patch });
 export const useSettings = () =>
   useSyncExternalStore(settingsStore.subscribe, settingsStore.get, settingsStore.get);
 
-/* ---------- history ---------- */
+/* ---------- members ---------- */
 
-export type HistoryItem = {
-  id: string;
-  raw: string;
-  format: string; // 'qr', 'ean13', ...
-  source: 'scan' | 'create';
-  kind: ContentKind;
-  verdict: Verdict;
-  title: string;
-  ts: number;
-  fav?: boolean;
-};
+export type Member = { id: string; name: string; plan: PlanId; expires: number | null; createdAt: number; note?: string };
+const memberStore = createStore<Member[]>('passdesk.members.v1', []);
+export const FREE_MEMBER_LIMIT = 10;
 
-const historyStore = createStore<HistoryItem[]>('scanwise.history.v1', []);
-const MAX_ITEMS = 500;
-export const FREE_HISTORY_LIMIT = 25;
+export const useMembers = () => useSyncExternalStore(memberStore.subscribe, memberStore.get, memberStore.get);
+export const getMembers = () => memberStore.get();
+export const findMember = (id: string) => memberStore.get().find((m) => m.id === id);
+export const canAddMember = () => isPro() || memberStore.get().length < FREE_MEMBER_LIMIT;
 
-export const useHistory = () =>
-  useSyncExternalStore(historyStore.subscribe, historyStore.get, historyStore.get);
+export function addMember(name: string, plan: PlanId, note?: string): Member | null {
+  const clean = name.trim();
+  if (!clean || !canAddMember()) return null;
+  const m: Member = { id: uid(), name: clean, plan, expires: expiryFor(plan), createdAt: Date.now(), note: note?.trim() || undefined };
+  memberStore.set([m, ...memberStore.get()]);
+  return m;
+}
 
-export function addHistory(item: Omit<HistoryItem, 'id' | 'ts'>): HistoryItem | null {
-  if (!getSettings().saveHistory) return null;
-  const list = historyStore.get();
-  const now = Date.now();
-  const dupe = list.find((h) => h.raw === item.raw && h.source === item.source && now - h.ts < 5000);
-  if (dupe) return dupe;
-  const full: HistoryItem = { ...item, id: `${now}-${Math.random().toString(36).slice(2, 7)}`, ts: now };
-  historyStore.set([full, ...list].slice(0, isPro() ? MAX_ITEMS : FREE_HISTORY_LIMIT));
+export function renewMember(id: string, plan: PlanId) {
+  memberStore.set(
+    memberStore.get().map((m) => {
+      if (m.id !== id) return m;
+      const base = m.expires && m.expires > Date.now() ? m.expires + 1 : Date.now();
+      return { ...m, plan, expires: expiryFor(plan, base) };
+    }),
+  );
+}
+
+export function removeMember(id: string) {
+  memberStore.set(memberStore.get().filter((m) => m.id !== id));
+}
+
+/* ---------- check-ins ---------- */
+
+export type CheckIn = { id: string; memberId: string; name: string; ts: number; status: PassStatus | 'unknown' };
+const checkinStore = createStore<CheckIn[]>('passdesk.checkins.v1', []);
+const MAX_LOG = 5000;
+
+export const useCheckIns = () => useSyncExternalStore(checkinStore.subscribe, checkinStore.get, checkinStore.get);
+
+export function recordCheckIn(c: Omit<CheckIn, 'id' | 'ts'>): CheckIn {
+  const full: CheckIn = { ...c, id: uid(), ts: Date.now() };
+  checkinStore.set([full, ...checkinStore.get()].slice(0, MAX_LOG));
   return full;
 }
 
-export function toggleFavorite(id: string) {
-  historyStore.set(historyStore.get().map((h) => (h.id === id ? { ...h, fav: !h.fav } : h)));
+export function clearCheckIns() {
+  checkinStore.set([]);
 }
 
-export function removeHistory(id: string) {
-  historyStore.set(historyStore.get().filter((h) => h.id !== id));
-}
-
-export function clearHistory(keepFavorites = true) {
-  historyStore.set(keepFavorites ? historyStore.get().filter((h) => h.fav) : []);
-}
+export const toCsv = (rows: CheckIn[]) =>
+  ['time,member,result', ...rows.map((r) => `${new Date(r.ts).toISOString()},"${r.name.replace(/"/g, '""')}",${r.status}`)].join('\n');

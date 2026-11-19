@@ -33,7 +33,7 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
-          <Stack.Screen name="result" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="member/[id]" />
         </Stack>
       </SafeAreaProvider>
     </GestureHandlerRootView>
