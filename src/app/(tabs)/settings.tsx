@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
-import { Alert, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Alert, Linking, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { manageSubscription, restore, showPaywall, useIsPro } from '@/lib/purchases';
@@ -57,6 +57,13 @@ export default function SettingsScreen() {
           <Button primary label="Try Pro free" onPress={showPaywall} />
         )}
         <Button label="Restore purchases" onPress={restore} />
+        <Text style={s.hint}>
+          After the 7-day free trial, Pro renews automatically at the price shown on the Pro screen until you cancel. Cancel any time in your Apple ID subscription settings, at least 24 hours before the period ends.
+        </Text>
+        <View style={{ flexDirection: 'row', gap: 18 }}>
+          <Pressable accessibilityRole="link" hitSlop={8} onPress={() => Linking.openURL('https://samayhuf-star.github.io/app-legal/scanwise/terms.html')}><Text style={[s.hint, { color: colors.text, fontWeight: '700' }]}>Terms of Use</Text></Pressable>
+          <Pressable accessibilityRole="link" hitSlop={8} onPress={() => Linking.openURL('https://samayhuf-star.github.io/app-legal/scanwise/privacy.html')}><Text style={[s.hint, { color: colors.text, fontWeight: '700' }]}>Privacy Policy</Text></Pressable>
+        </View>
       </Card>
 
       <SectionTitle>Scanning</SectionTitle>
