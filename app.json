@@ -13,7 +13,28 @@
       "bundleIdentifier": "com.samayhuf.scanwise",
       "buildNumber": "1",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Scanwise uses the camera only to read QR codes and barcodes. Nothing is uploaded.",
+        "NSPhotoLibraryUsageDescription": "Scanwise reads QR codes and barcodes from photos you choose. Nothing is uploaded."
+      },
+      "privacyManifests": {
+        "NSPrivacyTracking": false,
+        "NSPrivacyTrackingDomains": [],
+        "NSPrivacyCollectedDataTypes": [],
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          }
+        ]
       }
     },
     "android": {
@@ -58,7 +79,9 @@
     "extra": {
       "eas": {
         "projectId": "5cf47efc-4f02-435e-8e8b-e0491277ff07"
-      }
-    }
+      },
+      "privacyPolicyUrl": "https://samayhuf-star.github.io/app-legal/scanwise/privacy.html"
+    },
+    "description": "Scanwise scans QR codes and barcodes safely, checks every link on your device before it opens, and lets you create your own codes."
   }
 }
