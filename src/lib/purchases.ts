@@ -5,7 +5,10 @@ import RevenueCatUI from 'react-native-purchases-ui';
 
 /** Entitlement id configured in the RevenueCat dashboard. Features are gated on this, never on product ids. */
 export const ENTITLEMENT = 'premium';
-const IOS_KEY = process.env.EXPO_PUBLIC_RC_IOS_KEY;
+const RC_KEY =
+  Platform.OS === 'ios'
+    ? process.env.EXPO_PUBLIC_RC_IOS_KEY
+    : (process.env.EXPO_PUBLIC_RC_ANDROID_KEY ?? 'goog_TwwEolLxylJsgGmFFmDQzQuroHo');
 
 let pro = false;
 let configured = false;
@@ -21,9 +24,9 @@ function apply(info: CustomerInfo) {
 }
 
 export function initPurchases() {
-  if (configured || Platform.OS !== 'ios' || !IOS_KEY) return;
+  if (configured || (Platform.OS !== 'ios' && Platform.OS !== 'android') || !RC_KEY) return;
   try {
-    Purchases.configure({ apiKey: IOS_KEY });
+    Purchases.configure({ apiKey: RC_KEY });
     configured = true;
     Purchases.addCustomerInfoUpdateListener(apply);
     Purchases.getCustomerInfo().then(apply).catch(() => {});
