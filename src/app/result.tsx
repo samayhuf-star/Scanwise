@@ -1,12 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { runAction } from '@/lib/actions';
 import { analyze, type Finding } from '@/lib/shield';
 import { colors, radius, verdictColor } from '@/lib/theme';
+import { noteSuccess } from '@/lib/reviewPrompt';
 
 const VERDICT_ICON = {
   safe: 'shield-checkmark',
@@ -25,7 +26,9 @@ const FINDING_ICON: Record<Finding['level'], { name: React.ComponentProps<typeof
 };
 
 export default function ResultScreen() {
-  const { raw = '', format = 'qr' } = useLocalSearchParams<{ raw?: string; format?: string; src?: string }>();
+  const { raw = '', format = 'qr', src } = useLocalSearchParams<{ raw?: string; format?: string; src?: string }>();
+  // Rating prompt after the 3rd successful live scan (not when reopening history).
+  useEffect(() => { if (src === 'scan') noteSuccess(3); }, [src]);
   const insets = useSafeAreaInsets();
   const a = useMemo(() => analyze(raw), [raw]);
   const [toast, setToast] = useState<string | null>(null);

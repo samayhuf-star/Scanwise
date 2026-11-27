@@ -1,0 +1,24 @@
+{
+  "es-MX": {
+    "title": "Scanwise: Lector QR",
+    "subtitle": "Lector y generador de códigos",
+    "keywords": [
+      "qr",
+      "code",
+      "scanner",
+      "barcode",
+      "reader",
+      "generator",
+      "scan",
+      "qrscanner",
+      "codes",
+      "quick",
+      "fast",
+      "url",
+      "menu",
+      "coupon",
+      "ticket"
+    ],
+    "note": "DRAFT. es-MX is also indexed by the US storefront: keywords are extra English long-tail terms not in en-US. Description/promo must be a Spanish translation before upload (copying English is allowed but weaker for MX users)."
+  }
+}

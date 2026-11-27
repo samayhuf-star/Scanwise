@@ -1,0 +1,36 @@
+{
+  "configVersion": 0,
+  "apple": {
+    "categories": [
+      "UTILITIES",
+      "PRODUCTIVITY"
+    ],
+    "info": {
+      "en-US": {
+        "title": "Scanwise: QR Code Scanner",
+        "subtitle": "Barcode Reader & Generator",
+        "description": "Scan any QR code or barcode in a moment, then know if the link is safe before you open it.\nSafe-Link Shield warns you about look-alike sites, shortened URLs and risky downloads, right on your device.\nCreate QR codes for Wi-Fi, contacts, links and more. No account, no ads, and your history stays on your device.\n\nSCAN AND CREATE\n- Scan QR codes and barcodes with the camera, or from a photo in your library\n- Reads QR, EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, Codabar, PDF417, Aztec and Data Matrix\n- Open, copy or share the result in one tap\n- Safe-Link Shield gives a Safe, Caution or Danger verdict with reasons, before a link opens\n- Wi-Fi and payment codes are explained, not opened blindly\n- Create QR codes for links, text, Wi-Fi, contacts, email, phone and SMS\n- History of your latest 20 scans and codes, plus everything you star, with search and filters\n\nSCANWISE PRO\nUnlock more tools with a 7-day free trial:\n- Barcode generator (Code 128, EAN-13, EAN-8, UPC-A, Code 39 and ITF-14)\n- UPI payment QR codes\n- Custom code colours (navy, green and purple)\n- Unlimited history\n- Batch QR codes (one per line, up to 30, shared as one image)\n- History export as CSV\n\nScanning, Safe-Link Shield, basic QR creation and recent history stay free. The paywall appears only when you use a Pro feature or tap Go Pro.\n\nSUBSCRIPTIONS\nScanwise Pro is an optional auto-renewable subscription.\n\n- Monthly: $2.99 with a 7-day free trial\n- Yearly: $19.99 with a 7-day free trial\n\nPayment is charged to your Apple ID account at confirmation of purchase. After the free trial, the subscription starts automatically unless you cancel at least 24 hours before the trial ends. The subscription renews automatically at the same price unless you cancel at least 24 hours before the end of the current period. Your account is charged for renewal within 24 hours prior to the end of the current period. You can manage or cancel anytime in your Apple ID subscription settings after purchase.\n\nTerms of Use: https://samayhuf-star.github.io/app-legal/scanwise/terms.html\nPrivacy Policy: https://samayhuf-star.github.io/app-legal/scanwise/privacy.html",
+        "keywords": [
+          "qrcode",
+          "wifi",
+          "maker",
+          "creator",
+          "safe",
+          "link",
+          "checker",
+          "upc",
+          "ean",
+          "vcard",
+          "contact",
+          "pdf417",
+          "datamatrix",
+          "history",
+          "price"
+        ],
+        "promoText": "Scan any QR or barcode, then check the link before it opens. Create Wi-Fi and contact codes. Try Scanwise Pro free for 7 days.",
+        "supportUrl": "https://samayhuf-star.github.io/app-legal/scanwise/support.html",
+        "privacyPolicyUrl": "https://samayhuf-star.github.io/app-legal/scanwise/privacy.html"
+      }
+    }
+  }
+}
