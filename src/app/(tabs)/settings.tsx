@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, ProBadge, SectionTitle } from '@/components/ui';
 import { FREE_HISTORY_LIMIT, PRIVACY_URL, TERMS_URL } from '@/lib/pro';
 import { restore } from '@/lib/purchases';
+import { usePushConsent } from '@/lib/push';
 import { clearHistory, setPro, setSettings, useHistory, usePro, useSettings } from '@/lib/store';
 import { colors } from '@/lib/theme';
 
@@ -34,6 +35,7 @@ export default function SettingsScreen() {
   const history = useHistory();
   const isPro = usePro();
   const [restoring, setRestoring] = useState(false);
+  const [push, setPush] = usePushConsent();
 
   const onRestore = async () => {
     if (restoring) return;
@@ -89,6 +91,7 @@ export default function SettingsScreen() {
           value={settings.saveHistory}
           onChange={(v) => setSettings({ saveHistory: v })}
         />
+        <Row label="Tips and updates" hint="Occasional push notifications. Off unless you turn it on." value={push} onChange={setPush} />
       </Card>
 
       <SectionTitle>Data</SectionTitle>

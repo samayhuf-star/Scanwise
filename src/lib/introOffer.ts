@@ -34,7 +34,7 @@ export function freeTrialDays(p: ProductLike | null | undefined): number | null 
   return null;
 }
 
-type PlanText = { price: string; period: 'month' | 'year'; trialDays?: number | null };
+type PlanText = { price: string; period: 'week' | 'month' | 'year'; trialDays?: number | null };
 
 /** Main button. The trial wording shows only when the store reports an eligible free trial. */
 export function ctaText(plan: PlanText): string {

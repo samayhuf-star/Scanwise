@@ -18,7 +18,7 @@ describe('StoreKit test config', () => {
     assert.deepEqual(sk.products, []);
   });
   it('periods and test prices', () => {
-    const want: Record<string, [string, string]> = { month: ['P1M', '2.99'], year: ['P1Y', '19.99'] };
+    const want: Record<string, [string, string]> = { week: ['P1W', '2.99'], month: ['P1M', '5.99'], year: ['P1Y', '29.99'] };
     for (const p of PRODUCT_CATALOG) {
       const s = subs.find((x) => x.productID === p.id)!;
       assert.equal(s.recurringSubscriptionPeriod, want[p.period][0]);

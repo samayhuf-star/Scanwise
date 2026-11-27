@@ -1,7 +1,8 @@
 {
   "cli": {
     "version": ">= 16.0.0",
-    "appVersionSource": "remote"
+    "appVersionSource": "remote",
+    "promptToConfigurePushNotifications": false
   },
   "build": {
     "development": {
@@ -15,7 +16,11 @@
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_ONESIGNAL_APP_ID": "b98430c4-b334-41e5-b559-f0b12178fcef",
+        "EXPO_PUBLIC_RC_IOS_KEY": ""
+      }
     }
   },
   "submit": {

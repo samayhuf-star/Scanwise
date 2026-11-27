@@ -28,9 +28,10 @@ describe('product ids', () => {
     assert.equal(app.expo.ios.bundleIdentifier, BUNDLE_ID);
     assert.equal(PRODUCT_IDS.monthly, 'com.samayhuf.scanwise.pro.monthly');
     assert.equal(PRODUCT_IDS.yearly, 'com.samayhuf.scanwise.pro.yearly');
+    assert.equal(PRODUCT_IDS.weekly, 'com.samayhuf.scanwise.pro.weekly');
   });
   it('knows only its own products', () => {
-    assert.deepEqual([...ALL_PRODUCT_IDS].sort(), [PRODUCT_IDS.monthly, PRODUCT_IDS.yearly].sort());
+    assert.deepEqual([...ALL_PRODUCT_IDS].sort(), [PRODUCT_IDS.weekly, PRODUCT_IDS.monthly, PRODUCT_IDS.yearly].sort());
     assert.equal(isKnownProduct(PRODUCT_IDS.monthly), true);
     assert.equal(isKnownProduct('com.samayhuf.scanwise.pro.lifetime'), false); // no lifetime (Samay, 13 Nov)
     assert.equal(isKnownProduct(undefined), false);
@@ -88,5 +89,14 @@ describe('history export', () => {
     const [head, row] = csv.trim().split('\n');
     assert.equal(head, 'date,source,format,verdict,title,content,starred');
     assert.equal(row, '1970-01-01T00:00:00.000Z,scan,qr,safe,Website link,"https://a.com/?q=""x"",y",yes');
+  });
+});
+
+describe('onboarding', () => {
+  it('has 9-10 screens and exports ONBOARDING_SCREENS', async () => {
+    const src = readFileSync(join(root, 'src/lib/onboarding.ts'), 'utf8');
+    const n = Number(/ONBOARDING_SCREENS = (\d+)/.exec(src)?.[1]);
+    assert.ok(n >= 9 && n <= 10);
+    assert.equal((src.match(/\{ id: '/g) ?? []).length, n);
   });
 });

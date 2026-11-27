@@ -18,7 +18,7 @@
         {
           "adHocOffers": [],
           "codeOffers": [],
-          "displayPrice": "19.99",
+          "displayPrice": "29.99",
           "familyShareable": false,
           "groupNumber": 1,
           "internalID": "5C4A1E02",
@@ -44,7 +44,7 @@
         {
           "adHocOffers": [],
           "codeOffers": [],
-          "displayPrice": "2.99",
+          "displayPrice": "5.99",
           "familyShareable": false,
           "groupNumber": 2,
           "internalID": "5C4A1E03",
@@ -63,6 +63,32 @@
           "productID": "com.samayhuf.scanwise.pro.monthly",
           "recurringSubscriptionPeriod": "P1M",
           "referenceName": "Scanwise Pro Monthly",
+          "subscriptionGroupID": "5C4A1E01",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "2.99",
+          "familyShareable": false,
+          "groupNumber": 3,
+          "internalID": "5C4A1E05",
+          "introductoryOffer": {
+            "internalID": "5C4A1E15",
+            "paymentMode": "free",
+            "subscriptionPeriod": "P1W"
+          },
+          "localizations": [
+            {
+              "description": "Barcodes, UPI codes, colours, batch codes, unlimited history",
+              "displayName": "Scanwise Pro Weekly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.samayhuf.scanwise.pro.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "Scanwise Pro Weekly",
           "subscriptionGroupID": "5C4A1E01",
           "type": "RecurringSubscription",
           "winbackOffers": []

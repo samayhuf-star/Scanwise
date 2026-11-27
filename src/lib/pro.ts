@@ -4,16 +4,23 @@
 export const BUNDLE_ID = 'com.samayhuf.scanwise';
 
 export const PRODUCT_IDS = {
+  weekly: `${BUNDLE_ID}.pro.weekly`,
   monthly: `${BUNDLE_ID}.pro.monthly`,
   yearly: `${BUNDLE_ID}.pro.yearly`,
 } as const;
 
+/** RevenueCat entitlement that unlocks Pro. Attach all three products to it, in offering "default". */
+export const ENTITLEMENT_ID = 'pro';
+
 export const SUBSCRIPTION_GROUP = 'Scanwise Pro';
 
 export const PRODUCT_CATALOG = [
-  { id: PRODUCT_IDS.yearly, kind: 'yearly' as const, type: 'subs' as const, label: 'Yearly', period: 'year' as const },
-  { id: PRODUCT_IDS.monthly, kind: 'monthly' as const, type: 'subs' as const, label: 'Monthly', period: 'month' as const },
+  { id: PRODUCT_IDS.yearly, kind: 'yearly' as const, label: 'Yearly', period: 'year' as const, rcPackage: '$rc_annual' },
+  { id: PRODUCT_IDS.monthly, kind: 'monthly' as const, label: 'Monthly', period: 'month' as const, rcPackage: '$rc_monthly' },
+  { id: PRODUCT_IDS.weekly, kind: 'weekly' as const, label: 'Weekly', period: 'week' as const, rcPackage: '$rc_weekly' },
 ];
+
+export type PlanKind = (typeof PRODUCT_CATALOG)[number]['kind'];
 
 export const ALL_PRODUCT_IDS: string[] = PRODUCT_CATALOG.map((p) => p.id);
 export const isKnownProduct = (id: string | null | undefined) => !!id && ALL_PRODUCT_IDS.includes(id);
